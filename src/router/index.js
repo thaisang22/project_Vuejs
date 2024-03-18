@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Edit from '../views/Edit.vue'
+import UserLogin from '../views/LoginUserView.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/Edit/:id',
     name: 'edit',
     component: Edit
+  },
+  {
+    path: '/User',
+    name: 'user',
+    component: UserLogin
   }
 
 ]
@@ -22,3 +28,5 @@ const router = createRouter({
 })
 
 export default router
+
+
