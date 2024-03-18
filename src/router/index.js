@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Edit from '../views/Edit.vue'
+import Edit from '../views/admin/Edit.vue'
 import UserLogin from '../views/LoginUserView.vue'
 import indexadmin from '../views/admin/index.vue'
 import NotFound from '@/components/NotFound.vue'

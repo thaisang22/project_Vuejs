@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/valid-template-root -->
 // eslint-disable-next-line vue/valid-template-root, vue/valid-template-root
 <template>
-
+  <div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -814,6 +814,8 @@
       </div>
       <!-- /.sidebar -->
     </aside>
+
+  </div>
 </template>
 
 <script>

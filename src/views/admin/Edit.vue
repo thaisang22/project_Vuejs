@@ -1,4 +1,5 @@
 <template>
+<div>
   <h3>Edit sutudent</h3>
   <form @submit.prevent="update">
     <div class="form-group">
@@ -11,6 +12,7 @@
           update
       </button>
   </form>
+</div>
 </template>
 
 

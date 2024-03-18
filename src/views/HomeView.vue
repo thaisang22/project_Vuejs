@@ -1,8 +1,11 @@
 <!-- eslint-disable-next-line vue/valid-template-root -->
 
 <template>
-  <userCreate/>
-  <userList/>
+  <div>
+    <userCreate/>
+    <userList/>
+  </div>
+ 
 </template>
 
 <script>
