@@ -2,7 +2,7 @@
     <div>
         <input name="__RequestVerificationToken" type="hidden"
             value="McIDPLA6RMDCX9NCMTnXRWQjrp98b-jIa_k8HT-LeCpejQcI0UXBoBEoK3kZFIJZr4bk2b5e1u_k3P0GSVc8-l1X_JgUqpkbpMDhLoA5-Bk1" />
-        <div class="preloader">
+        <div class="">
             <div class="loader">
                 <div class="shadow"></div>
                 <div class="box"></div>
