@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import Edit from '../views/Edit.vue'
 import UserLogin from '../views/LoginUserView.vue'
 import indexadmin from '../views/admin/index.vue'
+import NotFound from '@/components/NotFound.vue'
+
 
 const routes = [
   {
@@ -24,7 +26,11 @@ const routes = [
     path: '/indexadmin',
     name: 'admin',
     component: indexadmin
-  }
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
+}
 
 ]
 
