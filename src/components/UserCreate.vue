@@ -2,7 +2,7 @@
     <div class="card card-body mt-4">
         <form @submit.prevent="onSubmit">
             <div class="form-group">
-                <label for="">Name</label>
+                <label for="">Name THAI SANG NGU SI</label>
                 <input v-model="form.name" class="form-control" type="text" required />
             </div>
             <div class="form-group mt-3">
