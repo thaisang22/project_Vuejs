@@ -2,20 +2,20 @@
 
 <template>
   <div>
-    <userCreate/>
+    <!-- <userCreate/> -->
     <userList/>
   </div>
  
 </template>
 
 <script>
-import userCreate from '../components/UserCreate';
+// import userCreate from '../components/UserCreate';
 import userList from '../components/UserList.vue';
 
 export default {
   name: "HomeView",
   components: {
-    userCreate,
+    // userCreate,
     userList
   }
 };
