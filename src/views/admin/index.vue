@@ -9,10 +9,7 @@
   
   <script>
   import header_admin from '@/components/global_admin/header.vue';
-  import footer_admin from '@/components/global_admin/footer.vue';
-
-
-  
+  import footer_admin from '@/components/global_admin/footer.vue';  
   export default {
     name: "IndexView",
     components: {
@@ -21,5 +18,8 @@
 
     }
   };
-  </script>
+
+
+
+</script>
   

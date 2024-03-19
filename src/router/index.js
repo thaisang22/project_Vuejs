@@ -1,10 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// user
 import HomeView from '../views/HomeView.vue'
-import Edit from '../views/admin/Edit.vue'
 import UserLogin from '../views/user/LoginUserView.vue'
+// ----------------------------------------------------------------
+// admin
+import AddUser from '@/components/global_admin/add.vue'
+import IndexView from '../views/admin/index.vue' 
+import Edit from '@/components/global_admin/edit.vue'
+import ListUser from '@/components/global_admin/list_user.vue'
+import AddScore from '@/components/global_admin/addscore.vue'
+import AddObject from '@/components/global_admin/add_object.vue'
+// import AddNotificate from '@/components/global_admin/add_notificate.vue'
+
+
+
+// ----------------------------------------------------------------
+// khác
 import NotFound from '@/components/NotFound.vue'
-import adduser from '@/components/global_admin/add.vue'
-import IndexView from '@/views/admin/index.vue' // Thêm dòng này
+
 
 
 
@@ -17,7 +30,7 @@ const routes = [
     component: UserLogin, // Sử dụng IndexView
     children: [
       { path: '/home', name: 'home', component: HomeView },// edit
-      { path: "/adduser", name: 'adduser', component: adduser }// not found
+      { path: "/adduser", name: 'adduser', component: AddUser }// not found
     ]
   },
 
@@ -37,8 +50,16 @@ const routes = [
     name: 'indexadmin',
     component: IndexView, // Sử dụng IndexView
     children: [
-      { path: '/Edit/:id', name: 'edit', component: Edit },// edit
-      { path: "/adduser", name: 'adduser', component: adduser }// not found
+      { path: '/admin/edit/:id', name: 'edit', component: Edit },// edit
+      { path: "/admin/adduser", name: 'adduser', component: AddUser },// add
+      { path: "/admin/listuser", name: 'listuser', component: ListUser },// list
+      { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
+      { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
+      // { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
+
+
+
+
     ]
   }
 

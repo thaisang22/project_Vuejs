@@ -47,7 +47,7 @@
                         <td>{{phone}}</td>
                         <td>{{address}}</td>
                         <td>
-                            <router-link :to="`/edit/${id}`">
+                            <router-link :to="`/admin/edit/${id}`">
                                 <button class="btn btn-primary btn-sm me-2">
                                     Edit
                                 </button>

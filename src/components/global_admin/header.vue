@@ -187,41 +187,41 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                  <router-link to="/admin/listuser" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>USER LIST</p>
-                  </a>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <a href="/adduser" class="nav-link">
+                  <router-link to="/admin/adduser" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ADD</p>
-                  </a>
+                    <p>ADD USER</p>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <router-link to="/admin/addscore" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ADD SCORE</p>
-                  </a>
+                    <p>ADD SCORE USER</p>
+                  </router-link>
                 </li>
 
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <router-link to="/admin/addobject" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>TẠO CÁC HỌC PHẦN</p>
-                  </a>
+                    <p>add học phần</p>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <router-link to="/admin/addnotificate" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>nHẬP THÔNG BÁO</p>
-                  </a>
+                    <p>ENTER NOTIFICATE</p>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <router-link to="/" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>CHAT VỚI USER</p>
-                  </a>
+                    <p>CHAT USER</p>
+                  </router-link>
                 </li>
               </ul>
             </li>

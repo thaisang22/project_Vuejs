@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Thêm thông tin cho sinh viên</h1>
+            <h1>SỬA DANH SÁCH SINH VIÊN</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add USER</li>
+              <li class="breadcrumb-item active">EDIT USER</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Nhập thông tin cho sinh viên mới</h3>
+              <h3 class="card-title">Edit thông tin cho sinh viên</h3>
               <div class="card-tools">
                 <button
                   type="button"
@@ -100,30 +100,34 @@
 </template>
 
 <script>
-import { createUser } from "@/firebase.js";
-import { reactive } from "vue";
+import { reactive, computed , onMounted } from 'vue';
+import {  useRoute , useRouter} from 'vue-router';
+import { getUser , updateUser } from '@/firebase';
 
 export default {
-  name: "addUser",
+  name: "EditView",
   setup() {
-    const form = reactive({
-      name: "",
-      email: "",
-      code_user: "",
-      address: "",
-      phone: "", // Corrected numer to ''
+    const router = useRouter(); // Fixed typo: changed `userRouter` to `useRouter`
+    const route = useRoute(); // Fixed typo: changed `userRoute` to `useRoute`
+    const userId = computed(() => route.params.id);
+
+    const form = reactive({ name:'',email:''});
+
+    onMounted(async () => {
+      const user = await getUser(userId.value);
+      form.name = user.name;
+      form.email = user.email;
     });
 
-    const onSubmit = async () => {
-      await createUser({ ...form });
-      form.name = "";
-      form.email = "";
-      form.code_user = ""; // Clear code_user as well
-      form.address = ""; // Clear address as well
-      form.phone = ""; // Clear phone as well
+    const update = async () => {
+    
+      await updateUser(userId.value, form);
+ 
+      router.push('/');
     };
 
-    return { form, onSubmit };
-  },
+    return { form, update };
+  }
 };
 </script>
+
