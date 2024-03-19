@@ -11,16 +11,11 @@ import ListUser from '@/components/global_admin/list_user.vue'
 import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 // import AddNotificate from '@/components/global_admin/add_notificate.vue'
-
-
+import studentscore from '@/components/StudentScores.vue'
 
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
-
-
-
-
 
 const routes = [
   // user
@@ -34,6 +29,11 @@ const routes = [
     ]
   },
 
+  {
+    path: '/tracuuitc',
+    name: 'studentscore',
+    component: studentscore
+  },
 
     // ---------------------------------------------------------------------------------------------------------
   // notfound page 404
@@ -56,9 +56,6 @@ const routes = [
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
       // { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
-
-
-
 
     ]
   }
