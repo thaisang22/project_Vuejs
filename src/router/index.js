@@ -10,7 +10,7 @@ import Edit from '@/components/global_admin/edit.vue'
 import ListUser from '@/components/global_admin/list_user.vue'
 import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
-// import AddNotificate from '@/components/global_admin/add_notificate.vue'
+import AddNotificate from '@/components/global_admin/add_notification.vue'
 import studentscore from '@/components/StudentScores.vue'
 
 // ----------------------------------------------------------------
@@ -55,7 +55,7 @@ const routes = [
       { path: "/admin/listuser", name: 'listuser', component: ListUser },// list
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
-      // { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
+      { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
 
     ]
   }
