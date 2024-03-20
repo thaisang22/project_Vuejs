@@ -25,16 +25,32 @@
                                     </div>
                                     <h3>Cổng Thông Tin Sinh Viên</h3>
                                     <p>Đăng nhập hệ thống</p>
-                                    <form novalidate="novalidate" id="login_signin_form">
+                                    <form novalidate="novalidate" id="login_signin_form"  @submit.prevent="Login">
                                         <div class="form-group">
-                                            <input type="text" placeholder="Mã sinh viên" class="form-control"
-                                                id="Username" />
+                                            <input
+                    id="email"
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    value
+                    required
+                    autofocus
+                    v-model="email"
+                  />
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" placeholder="Mật khẩu" class="form-control mt-3"
-                                                id="Password" />
+                                            <input
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    required
+                    v-model="password"
+                  />
                                         </div>
-                                        <div id="btnlogin" class="btn-login mt-4"> Đăng nhập</div>
+                                        <button type="submit" class="btn-login mt-4"> Đăng nhập</button>
+                                        <!-- Display error message if login fails -->
+                                        <p v-if="error" class="text-danger">{{ error }}</p>
                                     </form>
                                 </div>
                             </div>
@@ -46,12 +62,37 @@
     </div>
 </template>
 <script>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
+  name: "LoginComponent",
+    setup() {
+    const email = ref('')
+    const password = ref('')
+    const error = ref(null)
 
+    const store = useStore()
+    const router = useRouter()
+
+    const Login = async () => {
+      try {
+        await store.dispatch('logIn', {
+          email: email.value,
+          password: password.value
+        })
+        router.push('/tracuuitc')
+      }
+      catch (err) {
+        error.value = err.message
+      }
+    }
+    return { Login, email, password, error }
+  }
 };
 </script>
-firebase@/firebase.js
+
 
 <style>
 .container {

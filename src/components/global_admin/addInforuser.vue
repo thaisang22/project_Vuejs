@@ -24,7 +24,7 @@
         <div class="">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Nhập thông tin cho sinh viên mới</h3>
+              <h3 class="card-title">Thêm thông tin cho sinh viên </h3>
               <div class="card-tools">
                 <button
                   type="button"

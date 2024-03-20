@@ -1,14 +1,68 @@
 import { createStore } from 'vuex'
-
+import { createUserWithEmailAndPassword ,signInWithEmailAndPassword,signOut , getAuth ,updateProfile} from "firebase/auth"
 export default createStore({
   state: {
+    user: {
+      loggedIn: false,
+      data:null
+    }
   },
   getters: {
+    user(state) {
+      return state.user
+    }
   },
   mutations: {
+    SET_LOGGER_IN(state, value) {
+      state.user.loggedIn = value;
+    },
+    SET_USER(state , data) {
+      state.user.data = data;
+    }
   },
   actions: {
+    async register(context, { email, password, name }) {
+      const auth = getAuth();
+      try {
+        const response = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(response.user, { displayName: name }); // Call updateProfile on the user object
+        context.commit('SET_USER', response.user);
+      } catch (error) {
+        console.error('Registration Error:', error.message);
+        throw new Error('Unable to register user');
+      }
+    },
+    
+    async logIn(context, { email, password }) {
+      const auth = getAuth();
+      try {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+        // If login is successful, commit user data to Vuex store
+        context.commit('SET_USER', response.user);
+      } catch (error) {
+        // If login fails, throw an error
+        throw new Error('Login failed');
+      }
+    },
+  async logOut(context){
+    const auth = getAuth();
+      await signOut(auth)
+      context.commit('SET_USER', null)
   },
+
+  async fetchUser(context ,user) {
+    
+    context.commit("SET_LOGGED_IN", user !== null);
+    if (user) {
+      context.commit("SET_USER", {
+        displayName: user.displayName,
+        email: user.email
+      });
+    } else {
+      context.commit("SET_USER", null);
+    }
+}
+},
   modules: {
   }
 })

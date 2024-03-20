@@ -2,16 +2,18 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { ref, onUnmounted } from 'vue';
 
+
 // Your web app's Firebase configuration
-const Config = {
-    apiKey: "AIzaSyBmKwt4y-GHcFfUgXuuXV11sVAyGxcGoWc",
-    authDomain: "vuejs-test-7057e.firebaseapp.com",
-    projectId: "vuejs-test-7057e",
-    storageBucket: "vuejs-test-7057e.appspot.com",
-    messagingSenderId: "493145973941",
-    appId: "1:493145973941:web:1c67048c263be3493a0afc",
-    measurementId: "G-PFP63LRPMY"
+const  Config = {
+  apiKey: "AIzaSyBmKwt4y-GHcFfUgXuuXV11sVAyGxcGoWc",
+  authDomain: "vuejs-test-7057e.firebaseapp.com",
+  projectId: "vuejs-test-7057e",
+  storageBucket: "vuejs-test-7057e.appspot.com",
+  messagingSenderId: "493145973941",
+  appId: "1:493145973941:web:c606d2b6f6802d2d3a0afc",
+  measurementId: "G-26RNB7FQCN"
 };
+
 
 const firebaseApp = initializeApp(Config);
 const db = getFirestore(firebaseApp);
@@ -23,7 +25,7 @@ const usersCollection = collection(db, 'users');
 // firebase db subjectCollection
 const subjectCollection = collection(db, 'subject');
 
-
+const modulesCollection = collection(db, 'modules');
 
 
 export const createsubject = async subject => {
@@ -80,3 +82,44 @@ export const useLoadUsers = () => {
   onUnmounted(unsubscribe);
   return users;
 }
+
+// Create module(học phần)
+export const createModule = async module => {
+  return await addDoc(modulesCollection, module);
+}
+
+// get module form firebase
+export const getmodule = async id => {
+  const docRef = doc(modulesCollection, id);
+  const module = await getDoc(docRef);
+  return module.exists() ? module.data() : null;
+}
+
+// update module form firebase
+export const updatemodule = async (id, module) => { 
+  const docRef = doc(modulesCollection, id);
+  await updateDoc(docRef, module);
+}
+
+
+// delete module from firebase
+export const deletemodule = async id => {
+  const docRef = doc(modulesCollection, id);
+  await deleteDoc(docRef);
+}
+
+
+// load list module form firebase
+export const useLoadmodules = () => {
+  const modules = ref([]);
+  const unsubscribe = onSnapshot(modulesCollection, snapshot => {
+    modules.value = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  });
+  
+  onUnmounted(unsubscribe);
+  return modules;
+}
+
