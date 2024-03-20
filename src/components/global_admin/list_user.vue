@@ -82,6 +82,7 @@ import { deleteUser , useLoadUsers } from '@/firebase';
 export default {
     
   name: "Listuser_admin",
+  
   setup() {
         const users = useLoadUsers()
         return { users , deleteUser}

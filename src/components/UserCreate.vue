@@ -37,4 +37,3 @@ export default {
     }
 };
 </script>
-firebase@/firebase.js

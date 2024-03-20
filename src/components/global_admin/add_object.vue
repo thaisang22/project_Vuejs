@@ -1,4 +1,3 @@
-/* eslint-disable */ // eslint-disable-next-line
 <template>
   <div class="content-wrapper ">
     <!-- Content Header (Page header) -->
@@ -42,64 +41,61 @@
                       <div class="card-body">
                         <form action="" @submit.prevent="onSubmit">
                           <div class="form-group">
-                          <label for="">Name Object</label>
-                          <input
-                            v-model="form.name"
-                            class="form-control"
-                            type="text"
-                            required
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="">Tín chỉ</label>
-                          <input
-                            type="number"
-                            v-model="form.email"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="">Teacher</label>
-                          <input
-                            type="text"
-                            v-model="form.code_user"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="">Class</label>
-                          <input
-                            type="text"
-                            v-model="form.address"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="">date start</label>
-                          <!-- Corrected typo -->
-                          <input
-                            type="date"
-                            v-model="form.phone"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="">date end</label>
-                          <!-- Corrected typo -->
-                          <input
-                            type="date"
-                            v-model="form.phone"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">
-                          Create
-                        </button>
+                            <label for="">Name Object</label>
+                            <input
+                              v-model="form.name"
+                              class="form-control"
+                              type="text"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="">Tín chỉ</label>
+                            <input
+                              type="number"
+                              v-model="form.credit"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="">Teacher</label>
+                            <input
+                              type="text"
+                              v-model="form.teacher"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="">Class</label>
+                            <input
+                              type="text" v-model="form.className"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="">Date start</label>
+                            <input
+                              type="date"
+                              v-model="form.dateStart"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="">Date end</label>
+                            <input
+                              type="date"
+                              v-model="form.dateEnd"
+                              class="form-control"
+                              required
+                            />
+                          </div>
+                          <button type="submit" class="btn btn-success mt-3">
+                            Create
+                          </button>
                         </form>
                       </div>
                       <!-- /.card-body -->
@@ -108,40 +104,40 @@
                   </div>
                 </div>
             </section>
-            <!--list  -->
-            <div class="col-8">
+            <!-- List -->
+            <div class="col-9">
                 <div class="card">
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Name ObJect</th>
+                        <!-- <th style="width: 20%;">ID</th> -->
+                        <th>Name Object</th>
                         <th>Tín chỉ</th>
-                        <th>teacher</th>
-                        <th>class</th>
-                        <th>date satrt</th>
-                        <th>date end</th>
+                        <th>Teacher</th>
+                        <th>Class</th>
+                        <th>Date Start</th>
+                        <th>Date End</th>
+                        <th>Action</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  v-for="{id,code_user,name,email,phone,address} in users" :key="id">
-                        <td>{{code_user}}501220203</td>
-                        <td>{{name}}Nguyễn Thế Mạnh</td>
-                        <td>{{email}}OPP </td>
-                        <td>{{phone}}0327532755</td>
-                        <td>{{address}}53 trịnh đình thảo</td>
-                        <td>{{address}}</td>
-                        <td>{{address}}</td>
+                      <tr  v-for="{ id, name, credit, teacher, className, dateStart, dateEnd } in modules" :key="id">
+                        <!-- <td>{{ id }}</td> -->
+                        <td>{{ name }}</td>
+                        <td>{{ credit }}</td>
+                        <td>{{ teacher }}</td>
+                        <td>{{ className }}</td>
+                        <td>{{ dateStart }}</td>
+                        <td>{{ dateEnd }}</td>
                         <td>
                             <router-link :to="`/admin/edit/${id}`">
                                 <button class="btn btn-primary btn-sm me-2">
                                     Edit
                                 </button>
                             </router-link>
-                            <button class="btn btn-primary btn-sm me-2" @click="deleteUser(id)">
-                                    Delete
+                            <button class="btn btn-primary btn-sm me-2" @click="deleteUser(id)">Delete
                             </button>
                         </td>
                       </tr>
@@ -151,44 +147,51 @@
                   <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-                <!-- /.card -->
               </div>
 
             </div>
         </div>
     </section>
-
-
-
     <!-- /.content -->
   </div>
 </template>
 
 <script>
-import { createUser } from "@/firebase.js";
+import { createModule } from "@/firebase.js";
 import { reactive } from "vue";
+import { useLoadmodules } from "@/firebase.js";
 
 export default {
-  name: "addUser",
+  name: "addObject",
   setup() {
+    const modules = useLoadmodules();
+
     const form = reactive({
       name: "",
-      email: "",
-      code_user: "",
-      address: "",
-      phone: "", // Corrected numer to ''
+      credit: 0,
+      teacher: "",
+      className: "",
+      dateStart: null,
+      dateEnd: null
     });
 
     const onSubmit = async () => {
-      await createUser({ ...form });
+      await createModule({ ...form });
       form.name = "";
-      form.email = "";
-      form.code_user = ""; // Clear code_user as well
-      form.address = ""; // Clear address as well
-      form.phone = ""; // Clear phone as well
+      form.credit = 0;
+      form.teacher = ""; 
+      form.className = ""; 
+      form.dateStart = null; 
+      form.dateEnd = null; 
     };
 
-    return { form, onSubmit };
+    return { form, onSubmit, modules };
   },
 };
 </script>
+
+<style>
+.content{
+  text-transform: capitalize;
+}
+</style>
