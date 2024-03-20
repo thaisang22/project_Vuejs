@@ -14,6 +14,12 @@
 @import "@/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css";
 @import "@/assets/plugins/daterangepicker/daterangepicker.css";
 @import "@/assets/plugins/summernote/summernote-bs4.min.css";
+@import "@/assets/dist/css/cssuser/style.css";
+
+
+///
+/// user view
+/// 
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

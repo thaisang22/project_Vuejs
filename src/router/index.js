@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // user
 import HomeView from '../views/HomeView.vue'
-import UserLogin from '../views/user/LoginUserView.vue'
+// import UserLogin from '../views/user/LoginUserView.vue'
+import IndexUserView from '../views/user/index.vue'
+
 // ----------------------------------------------------------------
 // admin
 import AddUser from '@/components/global_admin/add.vue'
@@ -12,7 +14,6 @@ import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 // import AddNotificate from '@/components/global_admin/add_notificate.vue'
 import studentscore from '@/components/StudentScores.vue'
-
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
@@ -22,7 +23,7 @@ const routes = [
   {
     path: '/',
     name: 'useradmin',
-    component: UserLogin, // Sử dụng IndexView
+    component: IndexUserView, // Sử dụng IndexView
     children: [
       { path: '/home', name: 'home', component: HomeView },// edit
       { path: "/adduser", name: 'adduser', component: AddUser }// not found
