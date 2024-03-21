@@ -109,7 +109,9 @@ export default {
     width: 150px;
 }
 
-
+.full-width .ubermenu-nav, .container, .row {
+    max-width: 100%;
+}
 /*================================================
 Login CSS
 =================================================*/
@@ -169,10 +171,6 @@ Login CSS
 
 .login-content .login-form form {
     margin-top: 35px;
-}
-
-.full-width .ubermenu-nav, .container, .row {
-    max-width: 1365px;
 }
 
 .login-content .login-form form .form-control {
