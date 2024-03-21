@@ -4,46 +4,50 @@
             <h1>THÔNG TIN SINH VIÊN</h1>
         </header>
 
-        <div class="student-details">
+        <div class="student-details" v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain,dateuser,classuser} in users" :key="id">
             <div class="student-info">
                 <div class="d-flex">
                     <div class="label">Mã sinh viên:</div>
-                    <div class="value">{{ studentData.MSSV }}</div>
+                    <div class="value">{{ codeuser }}</div>
                 </div>
                 <div class="d-flex">
                     <div class="label">Họ tên:</div>
-                    <div class="value">{{ studentData.HoTen }}</div>
+                    <div class="value">{{ fullName }}</div>
                 </div>
                 <div class="d-flex">
                     <div class="label">Ngày sinh:</div>
-                    <div class="value">{{ studentData.NgaySinh }}</div>
+                    <div class="value">{{ dateuser }}</div>
                 </div>
                 <div class="d-flex">
                     <div class="label">Nơi sinh:</div>
-                    <div class="value">{{ studentData.NoiSinh }}</div>
+                    <div class="value">{{ local_address }}</div>
+                </div>
+                <div class="d-flex">
+                    <div class="label">Địa chỉ:</div>
+                    <div class="value">{{ address }}</div>
+                </div>
+                <div class="d-flex">
+                    <div class="label">Điện thoại:</div>
+                    <div class="value">{{ phone }}</div>
+                </div>
+                <div class="d-flex">
+                    <div class="label">email:</div>
+                    <div class="value">{{ email }}</div>
                 </div>
             </div>
 
             <div class="student-education">
                 <div class="d-flex">
                     <div class="label">Ngành đào tạo:</div>
-                    <div class="value">{{ studentData.NganhDaoTao }}</div>
+                    <div class="value">{{ major }}</div>
                 </div>
                 <div class="d-flex">
                     <div class="label">Chuyên ngành:</div>
-                    <div class="value">{{ studentData.ChuyenNganh }}</div>
+                    <div class="value">{{ majorMain }}</div>
                 </div>
                 <div class="d-flex">
                     <div class="label">Lớp học:</div>
-                    <div class="value">{{ studentData.LopHoc }}</div>
-                </div>
-                <div class="d-flex">
-                    <div class="label">Loại đào tạo:</div>
-                    <div class="value">{{ studentData.LoaiDaoTao }}</div>
-                </div>
-                <div class="d-flex">
-                    <div class="label">Bậc đào tạo:</div>
-                    <div class="value">{{ studentData.BacDaoTao }}</div>
+                    <div class="value">{{ classuser }}</div>
                 </div>
             </div>
         </div>

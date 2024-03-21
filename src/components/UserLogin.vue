@@ -36,6 +36,7 @@
                     required
                     autofocus
                     v-model="email"
+                    placeholder="Email của bạn"
                   />
                                         </div>
                                         <div class="form-group">
@@ -46,6 +47,7 @@
                     name="password"
                     required
                     v-model="password"
+                    placeholder="Mật khẩu"
                   />
                                         </div>
                                         <button type="submit" class="btn-login mt-4"> Đăng nhập</button>
@@ -82,7 +84,7 @@ export default {
           email: email.value,
           password: password.value
         })
-        router.push('/tracuuitc')
+        router.push('/sinhvien/thongtin')
       }
       catch (err) {
         error.value = err.message
@@ -106,6 +108,7 @@ export default {
 .login-logo {
     width: 150px;
 }
+
 
 /*================================================
 Login CSS
