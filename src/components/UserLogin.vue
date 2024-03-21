@@ -168,6 +168,10 @@ Login CSS
     margin-top: 35px;
 }
 
+.full-width .ubermenu-nav, .container, .row {
+    max-width: 1365px;
+}
+
 .login-content .login-form form .form-control {
     background-color: #ffffff;
     color: #252525;
