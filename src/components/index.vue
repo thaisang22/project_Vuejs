@@ -920,7 +920,7 @@
 </template>
 <script>
 export default {
-    name: 'NotFoundComponent',
+    name: 'indexComponent',
 }
 </script>
 <style scope="scope">
@@ -1131,4 +1131,5 @@ export default {
 #section_236433576 .section-bg {
     background-position: 68% 45%;
 }
+
 </style>

@@ -1,37 +1,22 @@
 <template>
     <div>
         <footer id="footer" class="footer-wrapper">
-
             <section class="section sec_footer dark" id="section_843125691">
                 <div class="bg section-bg fill bg-fill  bg-loaded">
-
-
-
-
-
                 </div><!-- .section-bg -->
-
                 <div class="section-content relative">
-
-
-                    <div class="gap-element" style="display:block; height:auto; padding-top:40px" >
+                    <div class="gap-element" style="display:block; height:auto; padding-top:40px">
                     </div>
-
                     <div class="row align-center" id="row-648027187">
-
                         <div class="col medium-6 small-12 large-3">
                             <div class="col-inner">
-
                                 <h3>VĂN PHÒNG CHÍNH</h3>
-                                <div class="gap-element" style="display:block; height:auto; padding-top:8px"
-                                    ></div>
-
-
+                                <div class="gap-element" style="display:block; height:auto; padding-top:8px"></div>
                                 <div class="icon-box featured-box icon-box-left text-left">
                                     <div class="icon-box-img" style="width: 20px">
                                         <div class="icon">
                                             <div class="icon-inner">
-                                                
+                                                <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                     viewBox="0 0 440 440" style="enable-background:new 0 0 440 440;"
@@ -82,21 +67,17 @@ s-33.645,75-75,75C125.265,239.397,91.62,205.752,91.62,164.397z" />
                                         </div>
                                     </div>
                                     <div class="icon-box-text last-reset">
-
-
                                         <p><span style="color: #ffffff;">319 C16 Lý Thường Kiệt, Phường 15, Quận 11,
                                                 Tp.HCM</span></p>
-
                                     </div>
                                 </div><!-- .icon-box -->
-
-
-
                                 <div class="icon-box featured-box icon-box-left text-left">
                                     <div class="icon-box-img" style="width: 20px">
                                         <div class="icon">
                                             <div class="icon-inner">
-                                                
+                                                <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                                <!DOCTYPE svg
+                                                    PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                     width="612px" height="612px" viewBox="0 0 612 612"
@@ -153,20 +134,16 @@ C354.001,458.429,351.311,470.408,346.544,481.271z" />
                                         </div>
                                     </div>
                                     <div class="icon-box-text last-reset">
-
-
                                         <p><a href="tel:0769220162">076 922 0162</a></p>
-
                                     </div>
                                 </div><!-- .icon-box -->
-
-
-
                                 <div class="icon-box featured-box icon-box-left text-left">
                                     <div class="icon-box-img" style="width: 20px">
                                         <div class="icon">
                                             <div class="icon-inner">
-                                               
+                                                <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                                <!DOCTYPE svg
+                                                    PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                     width="308.728px" height="308.728px" viewBox="0 0 308.728 308.728"
@@ -221,18 +198,15 @@ l-47.276,47.593h274.396L231.905,222.705z" />
                                         </div>
                                     </div>
                                     <div class="icon-box-text last-reset">
-
-
                                         <p><a href="mailto:demonhunterg@gmail.com">demonhunterg@gmail.com</a><br /><a
                                                 href="mailto:mon@mona.media">mon@mona.media</a></p>
-
                                     </div>
                                 </div><!-- .icon-box -->
-
                                 <div class="icon-box featured-box icon-box-left text-left">
                                     <div class="icon-box-img" style="width: 20px">
                                         <div class="icon">
                                             <div class="icon-inner">
+                                                <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                     width="430.123px" height="430.123px" viewBox="0 0 430.123 430.123"
@@ -295,20 +269,13 @@ C322.509,279.968,318.263,293.676,309.801,305.81z" />
                                         </div>
                                     </div>
                                     <div class="icon-box-text last-reset">
-
-
                                         <p><a href="skype:demonhunterp?chat">demonhunterp</a></p>
-
                                     </div>
                                 </div><!-- .icon-box -->
-
-
-
                             </div>
                         </div>
                         <div class="col medium-6 small-12 large-3">
                             <div class="col-inner text-left">
-
                                 <h3>NGÀNH HỌC</h3>
                                 <ul class="sidebar-wrapper ul-reset ">
                                     <div class="mona_sidebar_footer">
@@ -346,117 +313,10 @@ C322.509,279.968,318.263,293.676,309.801,305.81z" />
                                         </div>
                                     </div>
                                 </ul>
-
-
-                            </div>
-                        </div>
-                        <div class="col col_footer_news medium-6 small-12 large-3">
-                            <div class="col-inner">
-
-                                <h3>TIN MỚI NHẤT</h3>
-
-
-                                <div class="row large-columns-1 medium-columns-1 small-columns-3 row-xsmall">
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="danh-sach-cau-hoi-phong-van-cua-cuc-xuat-nhap-canh-nhat-ban/index.html"
-                                                class="plain">
-                                                <div class="box box-vertical box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image" style="width:27%;">
-                                                        <div class="image-cover" style="padding-top:70%;">
-                                                            <img width="750" height="500"
-                                                                src="wp-content/uploads/2019/01/danh-sach-cau-hoi-phong-van-cua-cuc-xuat-nhap-canh-nhat-ban-9541867325a5f6d1be55ba.jpg"
-                                                                class="attachment-original size-original wp-post-image"
-                                                                alt=""
-                                                                srcset="https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/danh-sach-cau-hoi-phong-van-cua-cuc-xuat-nhap-canh-nhat-ban-9541867325a5f6d1be55ba.jpg 750w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/danh-sach-cau-hoi-phong-van-cua-cuc-xuat-nhap-canh-nhat-ban-9541867325a5f6d1be55ba-300x200.jpg 300w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/danh-sach-cau-hoi-phong-van-cua-cuc-xuat-nhap-canh-nhat-ban-9541867325a5f6d1be55ba-600x400.jpg 600w"
-                                                                sizes="(max-width: 750px) 100vw, 750px" />
-                                                        </div>
-                                                    </div><!-- .box-image -->
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Danh sách câu hỏi phỏng vấn
-                                                                của Cục xuất nhập cảnh Nhật Bản</h5>
-                                                            <div class="is-divider"></div>
-
-
-
-                                                        </div><!-- .box-text-inner -->
-                                                    </div><!-- .box-text -->
-                                                </div><!-- .box -->
-                                            </a><!-- .link -->
-                                        </div><!-- .col-inner -->
-                                    </div><!-- .col -->
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="dieu-kien-du-hoc-nhat-ban-2019/index.html" class="plain">
-                                                <div class="box box-vertical box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image" style="width:27%;">
-                                                        <div class="image-cover" style="padding-top:70%;">
-                                                            <img width="1200" height="630"
-                                                                src="wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban.jpg"
-                                                                class="attachment-original size-original wp-post-image"
-                                                                alt=""
-                                                                srcset="https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban.jpg 1200w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban-300x158.jpg 300w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban-768x403.jpg 768w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban-1024x538.jpg 1024w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/dieu-kien-du-hoc-nhat-ban-600x315.jpg 600w"
-                                                                sizes="(max-width: 1200px) 100vw, 1200px" />
-                                                        </div>
-                                                    </div><!-- .box-image -->
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Điều kiện du học Nhật Bản
-                                                                2019</h5>
-                                                            <div class="is-divider"></div>
-
-
-
-                                                        </div><!-- .box-text-inner -->
-                                                    </div><!-- .box-text -->
-                                                </div><!-- .box -->
-                                            </a><!-- .link -->
-                                        </div><!-- .col-inner -->
-                                    </div><!-- .col -->
-                                    <div class="col post-item">
-                                        <div class="col-inner">
-                                            <a href="huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban/index.html"
-                                                class="plain">
-                                                <div class="box box-vertical box-text-bottom box-blog-post has-hover">
-                                                    <div class="box-image" style="width:27%;">
-                                                        <div class="image-cover" style="padding-top:70%;">
-                                                            <img width="1200" height="630"
-                                                                src="wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c.jpg"
-                                                                class="attachment-original size-original wp-post-image"
-                                                                alt=""
-                                                                srcset="https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c.jpg 1200w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c-300x158.jpg 300w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c-768x403.jpg 768w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c-1024x538.jpg 1024w, https://mauweb.monamedia.net/blueuni/wp-content/uploads/2019/01/huong-dan-lam-thu-tuc-nhap-canh-vao-nhat-ban-8017822565aa6369c2247c-600x315.jpg 600w"
-                                                                sizes="(max-width: 1200px) 100vw, 1200px" />
-                                                        </div>
-                                                    </div><!-- .box-image -->
-                                                    <div class="box-text text-left">
-                                                        <div class="box-text-inner blog-post-inner">
-
-
-                                                            <h5 class="post-title is-large ">Hướng dẫn làm thủ tục nhập
-                                                                cảnh vào Nhật Bản</h5>
-                                                            <div class="is-divider"></div>
-
-
-
-                                                        </div><!-- .box-text-inner -->
-                                                    </div><!-- .box-text -->
-                                                </div><!-- .box -->
-                                            </a><!-- .link -->
-                                        </div><!-- .col-inner -->
-                                    </div><!-- .col -->
-                                </div>
-
-
                             </div>
                         </div>
                         <div class="col medium-6 small-12 large-3">
                             <div class="col-inner">
-
                                 <h3>ĐĂNG KÝ</h3>
                                 <p><span style="color: #ffffff;">Đăng ký để nhận được được thông tin mới nhất từ chúng
                                         tôi.</span></p>
@@ -483,7 +343,6 @@ C322.509,279.968,318.263,293.676,309.801,305.81z" />
                                         <div class="wpcf7-response-output wpcf7-display-none"></div>
                                     </form>
                                 </div>
-
                                 <div class="social-icons follow-icons " style="font-size:120%"><a href="#"
                                         target="_blank" data-label="Facebook" rel="noopener noreferrer nofollow"
                                         class="icon plain facebook tooltip" title="Follow on Facebook"><i
@@ -494,55 +353,758 @@ C322.509,279.968,318.263,293.676,309.801,305.81z" />
                                         data-label="Twitter" rel="noopener noreferrer nofollow"
                                         class="icon plain  twitter tooltip" title="Follow on Twitter"><i
                                             class="icon-twitter"></i></a></div>
-
-
                             </div>
                         </div>
                     </div>
-
                 </div><!-- .section-content -->
             </section>
-
             <div class="absolute-footer dark medium-text-center text-center">
                 <div class="container clearfix">
-
-
                     <div class="footer-primary pull-left">
                         <div class="copyright-footer">
-                            © Bản quyền thuộc về công ty khách hàng. Thiết kế website <a href=" " title=""><strong>Mona Media</strong></a>
+                            © Bản quyền thuộc về công ty khách hàng. Thiết kế website <a href=" "
+                                title="Mona Media"><strong>Mona Media</strong></a>
                         </div>
                     </div><!-- .left -->
                 </div><!-- .container -->
             </div><!-- .absolute-footer -->
-
             <a href="#top"
                 class="back-to-top button icon invert plain fixed bottom z-1 is-outline hide-for-medium circle"
                 id="top-link"><i class="icon-angle-up"></i></a>
-
         </footer><!-- .footer-wrapper -->
     </div>
 </template>
-
 <script>
 export default {
-    name: 'NotFoundComponent',
+    name: 'NComponent',
 }
 </script>
-
 <style scope="scope">
+.footer-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+user agent stylesheet footer {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+#section_843125691 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 #section_843125691 {
     padding-top: 0px;
     padding-bottom: 0px;
     background-color: rgb(0, 113, 187);
 }
 
+.section.dark {
+    background-color: #666;
+}
 
-@media (min-width:550px) {
+.dark,
+.dark p,
+.dark td {
+    color: #f1f1f1;
+}
 
-    #section_843125691 {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
+.section {
+    padding: 30px 0;
+    position: relative;
+    min-height: auto;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row;
+    flex-flow: row;
+    -ms-flex-align: center;
+    align-items: center;
+}
 
+.bg-loaded {
+    opacity: 1;
+}
+
+.bg {
+    opacity: 0;
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+}
+
+.bg-fill {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50%;
+}
+
+.fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.section-bg,
+.section-content {
+    width: 100%;
+}
+
+.section-bg {
+    overflow: hidden;
+}
+
+.relative {
+    position: relative !important;
+}
+
+.section-content {
+    z-index: 1;
+}
+
+.section-bg,
+.section-content {
+    width: 100%;
+}
+
+.full-width .ubermenu-nav,
+.container,
+.row {
+    max-width: 1230px;
+}
+
+.row,
+.gallery {
+    width: 100%;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.container-width,
+.full-width .ubermenu-nav,
+.container,
+.row {
+    max-width: 1080px;
+}
+
+body,
+.container,
+.full-width .ubermenu-nav,
+.container-width,
+.row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.col,
+.gallery-item,
+.columns {
+    position: relative;
+    margin: 0;
+    padding: 0 15px 30px;
+    width: 100%;
+}
+
+.col:first-child .col-inner {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.col-inner {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+.dark a.lead,
+.dark label,
+.dark .heading-font,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.hover-dark:hover p,
+.hover-dark:hover h1,
+.hover-dark:hover h2,
+.hover-dark:hover h3,
+.hover-dark:hover h4,
+.hover-dark:hover h5,
+.hover-dark:hover h6,
+.hover-dark:hover a {
+    color: #fff;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.icon-box-left,
+.icon-box-right {
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.sec_footer .icon-box-img {
+    width: 14px !important;
+}
+
+.icon-box-left .icon-box-img,
+.icon-box-right .icon-box-img {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    max-width: 200px;
+}
+
+.icon-box .icon-box-img {
+    margin-bottom: 1em;
+    max-width: 100%;
+    position: relative;
+}
+
+.icon-box-img svg {
+    width: 100%;
+    height: 100%;
+    transition: all .3s;
+    fill: currentColor;
+}
+
+.icon-box-img svg,
+.icon-box-img img {
+    padding-top: .2em;
+    width: 100%;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.icon-box-left .icon-box-img+.icon-box-text {
+    padding-left: 1em;
+}
+
+.icon-box-left .icon-box-text,
+.icon-box-right .icon-box-text {
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.icon-box-left,
+.icon-box-right {
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.sec_footer .icon-box-img {
+    width: 14px !important;
+}
+
+.icon-box-left .icon-box-img,
+.icon-box-right .icon-box-img {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    max-width: 200px;
+}
+
+.icon-box .icon-box-img {
+    margin-bottom: 1em;
+    max-width: 100%;
+    position: relative;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.icon-box-left,
+.icon-box-right {
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.col+.col .col-inner {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.col-inner {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+ul.ul-reset {
+    margin: 0;
+    padding: 0;
+}
+
+.mona_sidebar_footer ul {
+    margin: 0;
+}
+
+ul.menu>li,
+.widget>ul>li {
+    list-style: none;
+    margin-bottom: .3em;
+    text-align: left;
+    margin: 0;
+}
+
+.entry-content ol li,
+.entry-summary ol li,
+.col-inner ol li,
+.entry-content ul li,
+.entry-summary ul li,
+.col-inner ul li {
+    margin-left: 1.3em;
+}
+
+li {
+    margin-bottom: .6em;
+}
+
+ul.menu>li>a,
+ul.menu>li>span:first-child,
+.widget>ul>li>a,
+.widget>ul>li>span:first-child {
+    display: inline-block;
+    padding: 6px 0;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.dark a,
+.dark .widget a {
+    color: currentColor;
+}
+
+a {
+    color: #334862;
+    text-decoration: none;
+}
+
+a,
+button,
+input {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+a {
+    background-color: transparent;
+}
+
+.row .row-xsmall:not(.row-collapse),
+.container .row-xsmall:not(.row-collapse) {
+    margin-left: -2px;
+    margin-right: -2px;
+    margin-bottom: 0;
+}
+
+.row .gallery,
+.row .row:not(.row-collapse),
+.container .row:not(.row-collapse),
+.lightbox-content .row:not(.row-collapse) {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: auto;
+}
+
+.full-width .ubermenu-nav,
+.container,
+.row {
+    max-width: 1230px;
+}
+
+.row,
+.gallery {
+    width: 100%;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.container-width,
+.full-width .ubermenu-nav,
+.container,
+.row {
+    max-width: 1080px;
+}
+
+body,
+.container,
+.full-width .ubermenu-nav,
+.container-width,
+.row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row-xsmall>.flickity-viewport>.flickity-slider>.col,
+.row-xsmall>.col {
+    padding: 0 2px 3px;
+    margin-bottom: 0;
+}
+
+.gallery-columns-1 .gallery-item,
+.large-columns-1>.col,
+.large-columns-1 .flickity-slider>.col {
+    max-width: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+.medium-columns-1>.col,
+.medium-columns-1 .flickity-slider>.col {
+    max-width: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+.small-columns-3>.col,
+.small-columns-3 .flickity-slider>.col {
+    max-width: 33.33333%;
+    -ms-flex-preferred-size: 33.33333%;
+    flex-basis: 33.33333%;
+}
+
+.col+.col .col-inner {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.col:first-child .col-inner {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.col-inner {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+.box-list-view .box,
+.box-vertical {
+    display: table;
+    width: 100%;
+}
+
+.box,
+.box-image,
+.box-text {
+    transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.box {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.box-list-view .box .box-image,
+.box-vertical .box-image {
+    width: 50%;
+}
+
+.box-list-view .box .box-image,
+.box-list-view .box .box-text,
+.box-vertical .box-image,
+.box-vertical .box-text {
+    direction: ltr;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.box-image {
+    position: relative;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.box,
+.box-image,
+.box-text {
+    transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.has-format,
+.video-fit,
+.image-cover {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    padding-top: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.has-hover .bg,
+.has-hover [class*="image-"] img {
+    transition: filter .6s, opacity .6s, transform .6s, box-shadow .3s;
+}
+
+.video-fit video,
+.video-fit iframe,
+img.back-image,
+.image-cover img,
+.has-format img,
+.has-equal-box-heights .box-image img {
+    right: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    object-position: 50% 50%;
+    object-fit: cover;
+    font-family: 'object-fit: cover;';
+}
+
+.box-image img {
+    max-width: 100%;
+    width: 100%;
+    transform: translateZ(0);
+    margin: 0 auto;
+}
+
+img {
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img {
+    border-style: none;
+}
+
+.full-width .ubermenu-nav,
+.container,
+.row {
+    max-width: 1230px;
+}
+
+.row,
+.gallery {
+    width: 100%;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.small-12 {
+    max-width: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+.col,
+.gallery-item,
+.columns {
+    position: relative;
+    margin: 0;
+    padding: 0 15px 30px;
+    width: 100%;
+}
+
+.large-3 {
+    max-width: 25%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+}
+
+.medium-6 {
+    max-width: 100%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 25%;
+}
+
+.dark .wpcf7 {
+    color: #FFF;
+}
+
+div.wpcf7 {
+    margin: 0;
+    padding: 0;
+}
+
+.wpcf7 {
+    color: #333;
+    position: relative;
+}
+
+div.wpcf7 .screen-reader-response {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.col+.col .col-inner {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.col-inner {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+.sec_footer form.wpcf7-form {
+    margin-bottom: 0;
+}
+
+.nav-dark .social-icons,
+.dark .social-icons {
+    color: #FFF;
+}
+
+.social-icons {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .85em;
+    color: #999;
+}
+
+button.icon:not(.button),
+a.icon:not(.button) {
+    font-family: sans-serif;
+    margin-left: .25em;
+    margin-right: .25em;
+    font-size: 1.2em;
+}
+
+.sec_footer a {
+    color: #fff;
+    font-size: 14px;
+}
+
+.dark a,
+.dark .widget a {
+    color: currentColor;
+}
+
+a.plain {
+    color: currentColor;
+    transition: color .3s, opacity .3s, transform .3s;
+}
+
+a {
+    color: #334862;
+    text-decoration: none;
+}
+
+a,
+button,
+input {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+a {
+    background-color: transparent;
 }
 </style>
