@@ -32,29 +32,33 @@
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Name student</th>
+                        <th>Mã số sinh viên</th>
+                        <th>Họ tên</th>
                         <th>Email</th>
-                        <th>phone</th>
-                        <th>address</th>
+                        <th>Số điện thoại</th>
+                        <th>Quê Quán</th>
+                        <th>Địa chỉ</th>
+                        <th>Ngành Đào tạo</th>
+                        <th>Chuyên ngành</th>
+                        <th>Hành động</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  v-for="{id,code_user,name,email,phone,address} in users" :key="id">
-                        <td>{{code_user}}</td>
-                        <td>{{name}}</td>
+                      <tr  v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain} in users" :key="id">
+                        <td>{{codeuser}}</td>
+                        <td>{{fullName}}</td>
                         <td>{{email}} </td>
                         <td>{{phone}}</td>
+                        <td>{{local_address}}</td>
                         <td>{{address}}</td>
+                        <td>{{ major }}</td>
+                        <td>{{ majorMain }}</td>
                         <td>
                             <router-link :to="`/admin/edit/${id}`">
                                 <button class="btn btn-primary btn-sm me-2">
-                                    Edit
+                                    Cập nhật thông tin
                                 </button>
                             </router-link>
-                            <button class="btn btn-primary btn-sm me-2" @click="deleteUser(id)">
-                                    Delete
-                            </button>
                         </td>
                       </tr>
                       </tbody>

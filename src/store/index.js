@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
-import { createUserWithEmailAndPassword ,signInWithEmailAndPassword,signOut , getAuth ,updateProfile} from "firebase/auth"
+import { createUserWithEmailAndPassword ,signInWithEmailAndPassword,signOut , getAuth ,updateProfile , deleteUser} from "firebase/auth"
+import db from '@/firebase'
+import { collection , setDoc , doc } from 'firebase/firestore'
 export default createStore({
   state: {
     user: {
@@ -21,18 +23,44 @@ export default createStore({
     }
   },
   actions: {
-    async register(context, { email, password, name }) {
+    async  register(context, { email, password, name }) {
       const auth = getAuth();
+      const usersCollection = collection(db,'users');
       try {
+        // Create user with email and password
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(response.user, { displayName: name }); // Call updateProfile on the user object
+    
+        // Update user profile with display name
+        await updateProfile(response.user, { displayName: name });
+        // Add user information to Firestore collection
+
+        await setDoc(doc(usersCollection, response.user.uid), {
+          uid: response.user.uid,
+          email: email,
+          displayName: name
+        });
+    
+        // Update Vuex state with the registered user
         context.commit('SET_USER', response.user);
       } catch (error) {
         console.error('Registration Error:', error.message);
         throw new Error('Unable to register user');
       }
     },
-    
+    async deleteUserAccount(context, uid) {
+      const auth = getAuth();
+
+      try {
+        // Delete user account
+        await deleteUser(auth , uid);
+
+        // Clear user data from Vuex store
+        context.commit('SET_USER', null);
+      } catch (error) {
+        console.error('Error deleting user:', error.message);
+        throw new Error('Unable to delete user account');
+      }
+    },
     async logIn(context, { email, password }) {
       const auth = getAuth();
       try {

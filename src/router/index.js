@@ -14,9 +14,12 @@ import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
 import studentscore from '@/components/StudentScores.vue'
+import List_accouts from '@/components/global_admin/list_accouts.vue'
+
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
+
 
 const routes = [
   // user
@@ -52,7 +55,8 @@ const routes = [
     component: IndexView, // Sử dụng IndexView
     children: [
       { path: '/admin/edit/:id', name: 'edit', component: Edit },// edit
-      { path: "/admin/adduser", name: 'adduser', component: AddUser },// add
+      { path: "/admin/adduser", name: 'adduser', component: AddUser },
+      { path: "/admin/listaccout", name: 'List_accout', component: List_accouts },// add
       { path: "/admin/listuser", name: 'listuser', component: ListUser },// list
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
