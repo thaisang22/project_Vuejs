@@ -15,7 +15,6 @@
     components: {
       header_admin,
       footer_admin,
-
     }
   };
 

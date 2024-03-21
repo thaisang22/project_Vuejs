@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // user
-import HomeView from '../views/HomeView.vue'
 // import UserLogin from '../views/user/LoginUserView.vue'
 import IndexUserView from '../views/user/index.vue'
+import StudentScore from '@/components/StudentScores.vue'
+import StudentInfo from '@/components/StudentInfo.vue'
 
 // ----------------------------------------------------------------
 // admin
@@ -13,7 +14,6 @@ import ListUser from '@/components/global_admin/list_user.vue'
 import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
-import studentscore from '@/components/StudentScores.vue'
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
@@ -21,19 +21,13 @@ import NotFound from '@/components/NotFound.vue'
 const routes = [
   // user
   {
-    path: '/',
+    path: '/sinhvien',
     name: 'useradmin',
-    component: IndexUserView, // Sử dụng IndexView
+    component: IndexUserView, 
     children: [
-      { path: '/home', name: 'home', component: HomeView },// edit
-      { path: "/adduser", name: 'adduser', component: AddUser }// not found
+      { path: "/sinhvien/thongtin", name: 'StudentInfo', component: StudentInfo },
+      { path: "/sinhvien/diem", name: 'StudentScore', component: StudentScore },
     ]
-  },
-
-  {
-    path: '/tracuuitc',
-    name: 'studentscore',
-    component: studentscore
   },
 
     // ---------------------------------------------------------------------------------------------------------

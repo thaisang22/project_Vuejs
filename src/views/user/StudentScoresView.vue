@@ -1,12 +1,13 @@
 <template>
-    <studentscore></studentscore>
+    <studentscore/>
+    <router-view/>
 </template>
 
 <script>
 import studentscore from '@/components/StudentScores.vue'
 
 export default {
-    name: "UserLogin",
+    name: "StudentScore",
     components: {
         studentscore
     }
