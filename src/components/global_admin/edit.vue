@@ -1,6 +1,5 @@
-/* eslint-disable */ // eslint-disable-next-line
 <template>
-  <div class="content-wrapper ">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -19,12 +18,12 @@
       <!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <section class="content ">
+    <section class="content">
       <div class="container">
-        <div class="">
+        <div>
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit thông tin cho sinh viên</h3>
+              <h3 class="card-title">Chỉnh sửa thông tin sinh viên</h3>
               <div class="card-tools">
                 <button
                   type="button"
@@ -37,56 +36,91 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="" @submit.prevent="onSubmit">
+              <form action="" @submit.prevent="update">
                 <div class="form-group">
-                <label for="">fullname</label>
-                <input
-                  v-model="form.name"
-                  class="form-control"
-                  type="text"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">Email</label>
-                <input
-                  type="text"
-                  v-model="form.email"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">Code_user</label>
-                <input
-                  type="text"
-                  v-model="form.code_user"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">address</label>
-                <input
-                  type="text"
-                  v-model="form.address"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">Phone Number</label>
-                <!-- Corrected typo -->
-                <input
-                  type="text"
-                  v-model="form.phone"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <button type="submit" class="btn btn-success mt-3">
-                Create User
-              </button>
+                  <label for="">Mã số sinh viên</label>
+                  <input
+                    v-model="form.codeuser"
+                    class="form-control"
+                    type="text"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Họ và tên</label>
+                  <input
+                    type="text"
+                    v-model="form.fullName"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Ngày sinh</label>
+                  <input
+                    type="date"
+                    v-model="form.dateuser"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Địa chỉ</label>
+                  <input
+                    type="text"
+                    v-model="form.address"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Quê</label>
+                  <input
+                    type="text"
+                    v-model="form.local_address"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Số điện thoại</label>
+                  <input
+                    type="text"
+                    v-model="form.phone"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Ngành đào tạo</label>
+                  <input
+                    type="text"
+                    v-model="form.major"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Ngành chính</label>
+                  <input
+                    type="text"
+                    v-model="form.majorMain"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="">Lớp</label>
+                  <input
+                    type="text"
+                    v-model="form.class"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-success mt-3">
+                  Cập nhật
+                </button>
               </form>
             </div>
             <!-- /.card-body -->
@@ -100,34 +134,48 @@
 </template>
 
 <script>
-import { reactive, computed , onMounted } from 'vue';
-import {  useRoute , useRouter} from 'vue-router';
-import { getUser , updateUser } from '@/firebase';
+import { reactive, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { getUser, updateUser } from '@/firebase';
 
 export default {
   name: "EditView",
   setup() {
-    const router = useRouter(); // Fixed typo: changed `userRouter` to `useRouter`
-    const route = useRoute(); // Fixed typo: changed `userRoute` to `useRoute`
-    const userId = computed(() => route.params.id);
-
-    const form = reactive({ name:'',email:''});
+    const router = useRouter();
+    const route = useRoute();
+    const userId = route.params.id;
+    
+    const form = reactive({
+      codeuser: '',
+      fullName: '',
+      dateuser: '',
+      address: '',
+      local_address:'',
+      phone: '',
+      major: '',
+      majorMain: '',
+      class: ''
+    });
 
     onMounted(async () => {
-      const user = await getUser(userId.value);
-      form.name = user.name;
-      form.email = user.email;
+      const user = await getUser(userId);
+      form.codeuser = user.codeuser;
+      form.fullName = user.fullName;
+      form.dateuser = user.dateuser;
+      form.address = user.address;
+      form.local_address = user.local_address;
+      form.phone = user.phone;
+      form.major = user.major;
+      form.majorMain = user.majorMain;
+      form.class = user.class;
     });
 
     const update = async () => {
-    
-      await updateUser(userId.value, form);
- 
-      router.push('/');
+      await updateUser(userId, form);
+      router.push('/admin/listuser');
     };
 
     return { form, update };
   }
 };
 </script>
-

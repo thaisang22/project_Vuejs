@@ -18,6 +18,7 @@ const  Config = {
 const firebaseApp = initializeApp(Config);
 const db = getFirestore(firebaseApp);
 const usersCollection = collection(db, 'users');
+export default db;
 // // firebase db bảng điểm 
 // const scoreCollection = collection(db, 'scoreboar');
 // // firebase db  notification
