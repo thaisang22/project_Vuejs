@@ -113,7 +113,7 @@
                   <label for="">Lớp</label>
                   <input
                     type="text"
-                    v-model="form.class"
+                    v-model="form.classuser"
                     class="form-control"
                     required
                   />
@@ -154,7 +154,7 @@ export default {
       phone: '',
       major: '',
       majorMain: '',
-      class: ''
+      classuser: ''
     });
 
     onMounted(async () => {
@@ -167,7 +167,7 @@ export default {
       form.phone = user.phone;
       form.major = user.major;
       form.majorMain = user.majorMain;
-      form.class = user.class;
+      form.classuser = user.classuser;
     });
 
     const update = async () => {

@@ -38,19 +38,23 @@
                         <th>Số điện thoại</th>
                         <th>Quê Quán</th>
                         <th>Địa chỉ</th>
+                        <th>Ngày sinh</th>
+                        <th>Lớp</th>
                         <th>Ngành Đào tạo</th>
                         <th>Chuyên ngành</th>
                         <th>Hành động</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain} in users" :key="id">
+                      <tr  v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain,dateuser,classuser} in users" :key="id">
                         <td>{{codeuser}}</td>
                         <td>{{fullName}}</td>
                         <td>{{email}} </td>
                         <td>{{phone}}</td>
                         <td>{{local_address}}</td>
                         <td>{{address}}</td>
+                        <td>{{ dateuser }}</td>
+                        <td>{{ classuser }}</td>
                         <td>{{ major }}</td>
                         <td>{{ majorMain }}</td>
                         <td>
