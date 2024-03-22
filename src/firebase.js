@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { ref, onUnmounted } from 'vue';
+import { getAuth } from 'firebase/auth';
 
 
 // Your web app's Firebase configuration
@@ -25,6 +26,8 @@ export default db;
 // const notificationCollection = collection(db, 'notification');
 // firebase db subjectCollection
 const subjectCollection = collection(db, 'subject');
+
+const projectAuth = getAuth(firebaseApp);
 
 const modulesCollection = collection(db, 'modules');
 
@@ -109,7 +112,6 @@ export const deletemodule = async id => {
   await deleteDoc(docRef);
 }
 
-
 // load list module form firebase
 export const useLoadmodules = () => {
   const modules = ref([]);
@@ -123,4 +125,6 @@ export const useLoadmodules = () => {
   onUnmounted(unsubscribe);
   return modules;
 }
+
+export { projectAuth };
 

@@ -55,23 +55,29 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { getUserDataById } from '@/firebase';
+
 export default {
-    data() {
-        return {
-            // Replace this with your actual student data
-            studentData: {
-                MSSV: "123456789",
-                HoTen: "Nguyễn Văn A",
-                NgaySinh: "2000-01-01",
-                NoiSinh: "Hà Nội",
-                NganhDaoTao: "Công nghệ thông tin",
-                ChuyenNganh: "Hệ thống thông tin",
-                LopHoc: "CT18B",
-                LoaiDaoTao: "Chính quy",
-                BacDaoTao: "Đại học",
-            },
-        };
-    },
+    
+  name: "Listuser_admin",
+  setup() {
+    const users = ref([]); // Sử dụng ref để tạo một biến tham chiếu để lưu trữ danh sách người dùng
+
+    // Sử dụng async await để chờ người dùng đăng nhập và lấy ID của họ
+    const fetchUserData = async () => {
+      try {
+        const userData = await getUserDataById();
+        users.value = [userData]; 
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData(); 
+    return { users };
+  },
+
 };
 </script>
 
