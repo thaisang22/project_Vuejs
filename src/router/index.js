@@ -8,7 +8,7 @@ import LoginUser from '@/components/UserLogin.vue'
 // ----------------------------------------------------------------
 // admin
 import AddUser from '@/components/global_admin/add.vue'
-import IndexView from '../views/admin/index.vue' 
+import IndexView from '../views/admin/index.vue'
 import Edit from '@/components/global_admin/edit.vue'
 import ListUser from '@/components/global_admin/list_user.vue'
 import AddScore from '@/components/global_admin/addscore.vue'
@@ -20,27 +20,35 @@ import List_accouts from '@/components/global_admin/list_accouts.vue'
 // khác
 import NotFound from '@/components/NotFound.vue'
 
+import { projectAuth } from '@/firebase'
+
+const requireAuth = (to, from, next) => {
+  const user = projectAuth.currentUser;
+  if (!user) next({ name: "Login", params: {} })
+  next();
+}
 
 const routes = [
   // user
   {
     path: '/sinhvien',
     name: '',
-    component: IndexUserView, // Sử dụng IndexView
+    component: IndexUserView,
     children: [
       { path: "/sinhvien/thongtin", name: 'studentinfo', component: StudentInfo },
       { path: '/sinhvien/diem', name: 'studentscores', component: StudentScores },
-    ]
+    ],
+    beforeEnter: requireAuth,
   },
 
   {
     path: '/login',
-    name: '',
+    name: 'Login',
     component: LoginUser, // Sử dụng IndexView
   },
 
- 
-    // ---------------------------------------------------------------------------------------------------------
+
+  // ---------------------------------------------------------------------------------------------------------
   // notfound page 404
   {
     path: "/:catchAll(.*)",

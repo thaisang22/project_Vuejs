@@ -6,8 +6,9 @@ export default createStore({
   state: {
     user: {
       loggedIn: false,
-      data:null
-    }
+      data:null,
+      userId: null
+    },
   },
   getters: {
     user(state) {
@@ -20,7 +21,10 @@ export default createStore({
     },
     SET_USER(state , data) {
       state.user.data = data;
-    }
+    },
+    SET_USER_ID(state, userId) {
+      state.userId = userId;
+    },
   },
   actions: {
     async  register(context, { email, password, name }) {
@@ -64,14 +68,18 @@ export default createStore({
     async logIn(context, { email, password }) {
       const auth = getAuth();
       try {
-        const response = await signInWithEmailAndPassword(auth, email, password);
-        // If login is successful, commit user data to Vuex store
-        context.commit('SET_USER', response.user);
+          const response = await signInWithEmailAndPassword(auth, email, password);
+          context.commit('SET_USER', response.user);
+  
+          const userId = response.user.uid;
+          context.commit('SET_USER_ID', userId);
+  
+          return userId;
       } catch (error) {
-        // If login fails, throw an error
-        throw new Error('Login failed');
+          throw new Error('Login failed');
       }
-    },
+  },
+  
   async logOut(context){
     const auth = getAuth();
       await signOut(auth)

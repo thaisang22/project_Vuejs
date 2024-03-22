@@ -806,15 +806,7 @@ a {
     max-width: 1080px;
 }
 
-body,
-.container,
-.full-width .ubermenu-nav,
-.container-width,
-.row {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 .row-xsmall>.flickity-viewport>.flickity-slider>.col,
 .row-xsmall>.col {
