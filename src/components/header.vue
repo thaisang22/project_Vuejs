@@ -89,6 +89,12 @@
                                         <li>
                                             <a class="dropdown-item" href="/sinhvien/diem">Xem điểm</a>
                                         </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/sinhvien/dangkyhocphan">Đăng ký học phần</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -103,36 +109,6 @@
                                                 href="http://mauweb.monamedia.net/blueuni/thuc-tap-sinh-dieu-duong-tai-nhat-ban/">Điều
                                                 dưỡng</a>
                                         </li>
-                                        <li id="menu-item-804"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-804">
-                                            <a
-                                                href="http://mauweb.monamedia.net/blueuni/du-hoc-nhat-ban-nganh-cong-nghe-thong-tin-nam-2018-2019/">Công
-                                                nghệ thông tin</a>
-                                        </li>
-                                        <li id="menu-item-803"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-803">
-                                            <a
-                                                href="http://mauweb.monamedia.net/blueuni/du-hoc-nhat-ban-nganh-du-lich-nha-hang-khach-san/">Nhà
-                                                hàng – Khách sạn</a>
-                                        </li>
-                                        <li id="menu-item-802"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-802">
-                                            <a
-                                                href="http://mauweb.monamedia.net/blueuni/du-hoc-nhat-ban-nganh-co-khi-nganh-ky-thuat-o-to-nhat-ban/">Cơ
-                                                khí – Kỹ thuật ôtô</a>
-                                        </li>
-                                        <li id="menu-item-801"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-801">
-                                            <a
-                                                href="http://mauweb.monamedia.net/blueuni/du-hoc-nhat-ban-nganh-dau-bep/">Đầu
-                                                bếp</a>
-                                        </li>
-                                        <li id="menu-item-799"
-                                            class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-799">
-                                            <a
-                                                href="http://mauweb.monamedia.net/blueuni/du-hoc-nhat-ban-nganh-xay-dung/">Xây
-                                                dựng</a>
-                                        </li>
                                     </ul>
                                 </li>
                                 <li id="menu-item-25"
@@ -143,40 +119,16 @@
                                     class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-23"><a
                                         href="https://mauweb.monamedia.net/blueuni/lien-he/" class="nav-top-link">Liên
                                         hệ</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Right Elements -->
-                        <div class="flex-col hide-for-medium flex-right">
-                            <ul class="header-nav header-nav-main nav nav-right  nav-size-medium nav-uppercase">
-                                <li class="header-search-form search-form html relative has-icon">
-                                    <div class="header-search-form-wrapper">
-                                        <div class="searchform-wrapper ux-search-box relative form- is-normal">
-                                            <form method="get" class="searchform"
-                                                action="https://mauweb.monamedia.net/blueuni/" role="search">
-                                                <div class="flex-row relative">
-                                                    <div class="flex-col flex-grow">
-                                                        <input type="search" class="search-field mb-0" name="s" value=""
-                                                            id="s" placeholder="Tìm kiếm…" autocomplete="off">
-                                                    </div><!-- .flex-col -->
-                                                    <div class="flex-col">
-                                                        <button type="submit"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0">
-                                                            <i class="icon-search"></i> </button>
-                                                    </div><!-- .flex-col -->
-                                                </div><!-- .flex-row -->
-                                                <div class="live-search-results text-left z-top">
-                                                    <div class="autocomplete-suggestions"
-                                                        style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                        <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-angle-down"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
 
+                        <!-- Right Elements -->
                         <!-- Mobile Right Elements -->
                         <div class="flex-col show-for-medium flex-right">
                             <ul class="mobile-nav nav nav-right ">
@@ -186,9 +138,7 @@
                     </div><!-- .header-inner -->
 
                     <!-- Header divider -->
-                    <div class="container">
-                        <div class="top-divider full-width"></div>
-                    </div>
+                    
                 </div><!-- .header-main -->
                 <div class="header-bg-container fill">
                     <div class="header-bg-image fill"></div>
@@ -200,9 +150,26 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { getAuth, signOut } from 'firebase/auth';
+
 export default {
-    name: 'NotFoundComponent',
-}
+    name:'HeaderComponents',
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const handleLogout = async () => {
+      const auth = getAuth();
+      await signOut(auth); 
+      await store.dispatch('logOut'); 
+      router.push('/');
+    }
+
+    return { handleLogout };
+  }
+};
 </script>
 
 <style scoped>
@@ -2103,11 +2070,11 @@ li.has-dropdown:hover>.nav-dropdown-full {
     justify-content: flex-start
 }
 
-.dropdown-menu{
- list-style: none;
+.dropdown-menu {
+    list-style: none;
 }
 
-li{
+li {
     list-style: none;
 }
 

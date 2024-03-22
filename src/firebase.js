@@ -87,27 +87,45 @@ export const useLoadUsers = () => {
   return users;
 }
 
+export const getUserDataById = async (userId) => {
+  
+  try {
+    const userDocRef = doc(usersCollection, userId);
+    const userDocSnapshot = await getDoc(userDocRef); 
+    if (userDocSnapshot.exists()) {
+      return { id: userDocSnapshot.id, ...userDocSnapshot.data() };
+    } else {
+      console.warn('User not found for ID:', userId);
+      return null; 
+    }
+  } catch (error) {
+    console.error(`Error getting user data: ${error.message}`);
+    throw error;
+  }
+};
+
+
 // Create module(học phần)
 export const createModule = async module => {
   return await addDoc(modulesCollection, module);
 }
 
 // get module form firebase
-export const getmodule = async id => {
+export const getModule = async id => {
   const docRef = doc(modulesCollection, id);
   const module = await getDoc(docRef);
   return module.exists() ? module.data() : null;
 }
 
 // update module form firebase
-export const updatemodule = async (id, module) => { 
+export const updateModule = async (id, module) => { 
   const docRef = doc(modulesCollection, id);
   await updateDoc(docRef, module);
 }
 
 
 // delete module from firebase
-export const deletemodule = async id => {
+export const deleteModule = async id => {
   const docRef = doc(modulesCollection, id);
   await deleteDoc(docRef);
 }

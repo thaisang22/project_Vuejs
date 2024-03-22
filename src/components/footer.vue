@@ -358,16 +358,7 @@ C322.509,279.968,318.263,293.676,309.801,305.81z" />
                     </div>
                 </div><!-- .section-content -->
             </section>
-            <div class="absolute-footer dark medium-text-center text-center">
-                <div class="container clearfix">
-                    <div class="footer-primary pull-left">
-                        <div class="copyright-footer">
-                            © Bản quyền thuộc về công ty khách hàng. Thiết kế website <a href=" "
-                                title="Mona Media"><strong>Mona Media</strong></a>
-                        </div>
-                    </div><!-- .left -->
-                </div><!-- .container -->
-            </div><!-- .absolute-footer -->
+            
             <a href="#top"
                 class="back-to-top button icon invert plain fixed bottom z-1 is-outline hide-for-medium circle"
                 id="top-link"><i class="icon-angle-up"></i></a>
@@ -406,7 +397,7 @@ summary {
     box-sizing: border-box;
 }
 
-user agent stylesheet footer {
+footer {
     display: block;
     unicode-bidi: isolate;
 }

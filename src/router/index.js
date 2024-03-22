@@ -5,6 +5,7 @@ import IndexUserView from '../views/user/index.vue'
 import StudentInfo from '@/components/StudentInfo.vue'
 import StudentScores from '@/components/StudentScores.vue'
 import LoginUser from '@/components/UserLogin.vue'
+import RegisterObject from '@/components/RegisterObject.vue'
 // ----------------------------------------------------------------
 // admin
 import AddUser from '@/components/global_admin/add.vue'
@@ -15,6 +16,7 @@ import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
 import List_accouts from '@/components/global_admin/list_accouts.vue'
+import Edit_Module from '@/components/global_admin/edit_object.vue'
 
 // ----------------------------------------------------------------
 // khác
@@ -25,7 +27,7 @@ import { projectAuth } from '@/firebase'
 const requireAuth = (to, from, next) => {
   const user = projectAuth.currentUser;
   if (!user) next({ name: "Login", params: {} })
-  next();
+  else next();
 }
 
 const routes = [
@@ -37,6 +39,7 @@ const routes = [
     children: [
       { path: "/sinhvien/thongtin", name: 'studentinfo', component: StudentInfo },
       { path: '/sinhvien/diem', name: 'studentscores', component: StudentScores },
+      { path: '/sinhvien/dangkyhocphan', name: 'registerobject', component: RegisterObject },
     ],
     beforeEnter: requireAuth,
   },
@@ -46,7 +49,6 @@ const routes = [
     name: 'Login',
     component: LoginUser, // Sử dụng IndexView
   },
-
 
   // ---------------------------------------------------------------------------------------------------------
   // notfound page 404
@@ -68,6 +70,7 @@ const routes = [
       { path: "/admin/listaccout", name: 'List_accout', component: List_accouts },// add
       { path: "/admin/listuser", name: 'listuser', component: ListUser },// list
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
+      { path: '/admin/edit_module/:id', name: 'edit_module', component: Edit_Module },// edit
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
       { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
 
@@ -75,7 +78,6 @@ const routes = [
   }
 
 ]
-
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

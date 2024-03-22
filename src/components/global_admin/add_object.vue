@@ -117,27 +117,29 @@
                         <th>Tín chỉ</th>
                         <th>Teacher</th>
                         <th>Class</th>
+                        <th>Số lượng</th>
                         <th>Date Start</th>
                         <th>Date End</th>
                         <th>Action</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  v-for="{ id, name, credit, teacher, className, dateStart, dateEnd } in modules" :key="id">
+                      <tr  v-for="{ id, name, credit, teacher, quantity, className, dateStart, dateEnd } in modules" :key="id">
                         <!-- <td>{{ id }}</td> -->
                         <td>{{ name }}</td>
                         <td>{{ credit }}</td>
                         <td>{{ teacher }}</td>
                         <td>{{ className }}</td>
+                        <td>{{ quantity }}</td>
                         <td>{{ dateStart }}</td>
                         <td>{{ dateEnd }}</td>
                         <td>
-                            <router-link :to="`/admin/edit/${id}`">
+                            <router-link :to="`/admin/edit_module/${id}`">
                                 <button class="btn btn-primary btn-sm me-2">
                                     Edit
                                 </button>
                             </router-link>
-                            <button class="btn btn-primary btn-sm me-2" @click="deleteUser(id)">Delete
+                            <button class="btn btn-primary btn-sm me-2" @click="deleteModule(id)">Delete
                             </button>
                         </td>
                       </tr>
@@ -159,7 +161,7 @@
 <script>
 import { createModule } from "@/firebase.js";
 import { reactive } from "vue";
-import { useLoadmodules } from "@/firebase.js";
+import { useLoadmodules, deleteModule} from "@/firebase.js";
 
 export default {
   name: "addObject",
@@ -185,7 +187,7 @@ export default {
       form.dateEnd = null; 
     };
 
-    return { form, onSubmit, modules };
+    return { form, onSubmit, modules, deleteModule};
   },
 };
 </script>

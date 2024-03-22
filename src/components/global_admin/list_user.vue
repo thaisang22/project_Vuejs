@@ -46,7 +46,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain,dateuser,classuser} in users" :key="id">
+                      <tr v-for="{id,codeuser,fullName,email,phone,local_address,address,major,majorMain,dateuser,classuser} in users" :key="id">
                         <td>{{codeuser}}</td>
                         <td>{{fullName}}</td>
                         <td>{{email}} </td>
