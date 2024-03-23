@@ -5,15 +5,15 @@
         <h3>ĐĂNG KÝ MÔN HỌC HỌC KÌ 2 - NĂM HỌC 2023 - 2024</h3>
         <h4>Danh sách môn học mở cho đăng ký</h4>
         <div>
-          <table class="table">
+          <table class="table table-bordered">
             <thead>
               <tr>
-                <th></th>
-                <th>Tên môn học</th>
-                <th>Số tín chỉ</th>
-                <th>Giảng viên</th>
-                <th>Lớp</th>
-                <th>Số lượng</th>
+                <th style="width: 4%;"></th>
+                <th style="width: 23%">Tên môn học</th>
+                <th style="width: 6%;">Số TC</th>
+                <th style="width: 18%;">Giảng viên</th>
+                <th style="width: 14%;">Lớp</th>
+                <th style="width: 4%;">SL</th>
                 <th>Thời khóa biểu</th>
               </tr>
             </thead>
@@ -24,7 +24,7 @@
                 <td>{{ moduleItem.credit }}</td>
                 <td>{{ moduleItem.teacher }}</td>
                 <td>{{ moduleItem.className }}</td>
-                <td></td>
+                <td>{{ moduleItem.quantity }}</td>
                 <td></td>
               </tr>
             </tbody>
@@ -34,32 +34,35 @@
     </div>
     <div>
       <div class="pt-5">
-        <h4>Danh sách môn học đã đăng ký: {{ selectedModulesInfo.length }} môn, {{ totalCredits }} tín chỉ</h4>
+        <h4>Danh sách môn học đã đăng ký: <span style="color: red;">{{ selectedModulesInfo.length }} môn, {{
+                totalCredits }} tín chỉ</span></h4>
         <div>
-          <table class="table">
+          <table class="table table-bordered">
             <thead>
               <tr>
-                <th>Xóa</th>
-                <th>Tên môn học</th>
-                <th>Số tín chỉ</th>
-                <th>Giảng viên</th>
-                <th>Lớp</th>
+                <th style="width: 6%;">Xóa</th>
+                <th style="width: 23%">Tên môn học</th>
+                <th style="width: 6%;">Số TC</th>
+                <th style="width: 18%;">Giảng viên</th>
+                <th style="width: 14%;">Lớp</th>
+                <th style="width: 4%;">SL</th>
                 <th>Thời khóa biểu</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="table-body-content">
               <tr v-for="(moduleItem, index) in selectedModulesInfo" :key="moduleItem.id">
-                <td><a href="#" @click.prevent="removeFromSelected(index)">Xóa</a></td>
+                <td><a href="#" @click.prevent="removeFromSelected(index)"><i class="fas fa-times"></i></a></td>
                 <td>{{ moduleItem.name }}</td>
                 <td>{{ moduleItem.credit }}</td>
                 <td>{{ moduleItem.teacher }}</td>
                 <td>{{ moduleItem.className }}</td>
-                <td></td>
+                <td>{{ moduleItem.quantity }}</td>
                 <td></td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -100,6 +103,7 @@ export default {
         credit: moduleItem.credit,
         teacher: moduleItem.teacher,
         className: moduleItem.className,
+        quantity: moduleItem.quantity,
         schedule: moduleItem.schedule
       }));
     });
@@ -123,9 +127,10 @@ export default {
           await createdModuled(subjectCollect);
 
           selectedModules.value = [];
-          break; 
+          break;
         } else {
-          window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);        }
+          window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);
+        }
       }
     };
 
@@ -139,4 +144,38 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+h3 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+.table td {
+  color: #0a3552;
+}
+.table th {
+  background-color: #0071BB;
+  font-weight: bold;
+  color: rgb(247, 247, 247);
+}
+
+.table-body-content {
+  color: #1060d6;
+}
+</style>
