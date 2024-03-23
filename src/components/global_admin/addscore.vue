@@ -1,22 +1,9 @@
-/* eslint-disable */ // eslint-disable-next-line
 <template>
   <div class="">
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Bảng điểm sinh viên</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">DataTables</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
+        <!-- Content header content here -->
       </section>
 
       <!-- Main content -->
@@ -28,7 +15,7 @@
               <div class="">
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h3 class="card-title">Nhập thông tin cho sinh viên mới</h3>
+                    <h3 class="card-title">Nhập điểm cho sinh viên</h3>
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -36,63 +23,47 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <form action="" @submit.prevent="onSubmit">
+                    <form @submit.prevent="onSubmit">
                       <div class="form-group mt-3">
-                        <label for="">Mã Số Sinh Viên</label>
+                        <label for="">Mã số sinh viên</label>
                         <input type="text" v-model="form.code_user" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
-                        <label for="">HỌC PHẦN</label>
-                        <div class="input-group">
-                          <select v-model="form.module" class="form-control" required>
-                            <option value="" disabled selected>Chọn học phần</option>
-                            <option value="hocphan1">Học phần 1</option>
-                            <option value="hocphan2">Học phần 2</option>
-                            <option value="hocphan3">Học phần 3</option>
-                            <!-- Thêm các option khác tương ứng với danh sách học phần của bạn -->
-                          </select>
-
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group mt-3">
-                        <label for="">ĐIỂM TX 1</label>
-                        <input type="text" v-model="form.address" class="form-control" required />
+                        <label for="">Chọn học phần</label>
+                        <select v-model="form.module" class="form-control" required>
+                          <option value="" disabled selected>Chọn học phần</option>
+                          <option v-for="module in modules" :key="module.id" :value="module.id">{{ module.name }}</option>
+                        </select>
                       </div>
                       <div class="form-group mt-3">
-                        <label for="">ĐIỂM TX 2</label>
-                        <input type="text" v-model="form.address" class="form-control" required />
+                        <label for="">Điểm TX1</label>
+                        <input type="text" v-model="form.tx1" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
-                        <label for="">ĐIỂM GIỮA KỲ</label>
-                        <input type="text" v-model="form.address" class="form-control" required />
+                        <label for="">Điểm TX2</label>
+                        <input type="text" v-model="form.tx2" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
-                        <label for="">ĐIỂM CUỐI KỲ</label>
-                        <!-- Corrected typo -->
-                        <input type="text" v-model="form.phone" class="form-control" required />
+                        <label for="">Điểm giữa kỳ</label>
+                        <input type="text" v-model="form.midTerm" class="form-control" required />
                       </div>
-                      <button type="submit" class="btn btn-success mt-3">
-                        ADD
-                      </button>
+                      <div class="form-group mt-3">
+                        <label for="">Điểm cuối kỳ</label>
+                        <input type="text" v-model="form.finalTerm" class="form-control" required />
+                      </div>
+                      <button type="submit" class="btn btn-success mt-3">Thêm điểm</button>
                     </form>
                   </div>
-                  <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
               </div>
             </div>
+
             <div class="col-9">
               <div class="card">
-                <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>ID</th>
                         <th>MSSV</th>
                         <th>HP</th>
                         <th>TX 1</th>
@@ -101,72 +72,178 @@
                         <th>CK</th>
                         <th>TB</th>
                         <th>KQ</th>
+                        <th>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="{ id, code_user, name, email, phone, address } in users" :key="id">
-                        <td>{{ code_user }}501220203</td>
-                        <td>{{ name }}Nguyễn Thế Mạnh</td>
-                        <td>{{ email }}OPP </td>
-                        <td>{{ phone }}0327532755</td>
-                        <td>{{ address }}53 trịnh đình thảo</td>
-                        <td>{{ address }}</td>
-                        <td>{{ address }}</td>
-                        <td>
-                          <router-link :to="`/admin/edit/${id}`">
-                            <button class="btn btn-primary btn-sm me-2">
-                              Edit
-                            </button>
-                          </router-link>
-                          <button class="btn btn-primary btn-sm me-2" @click="deleteUser(id)">
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
+                      <tr v-for="(score, index) in scoreboard" :key="index">
+  <td>{{ score.code_user }}</td>
+  <td>{{ score.moduleName }}</td> <!-- Sửa thành score.moduleName để hiển thị tên mô-đun -->
+  <td>{{ score.tx1 }}</td>
+  <td>{{ score.tx2 }}</td>
+  <td>{{ score.midTerm }}</td>
+  <td>{{ score.finalTerm }}</td>
+  <td>{{ score.average }}</td>
+  <td>{{ score.grade }}</td>
+  <td>
+    <router-link :to="`/admin/edit/${score.uid}`">
+      <button class="btn btn-primary btn-sm me-2">
+        Edit
+      </button>
+    </router-link>
+    <button class="btn btn-primary btn-sm me-2" @click="deleteScore(score.id)">
+      Delete
+    </button>
+  </td>
+</tr>
+
                     </tbody>
                   </table>
                 </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
-              <!-- /.card -->
             </div>
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
       </section>
-      <!-- /.content -->
     </div>
   </div>
 </template>
 
 <script>
-import { createUser } from "@/firebase.js";
-import { reactive } from "vue";
+import db from  "@/firebase.js";
+import { addScore  , useLoadmodules , useLoadScoreboard} from '@/firebase.js'; // Import the function to add score
+import { collection, addDoc , getDocs, deleteDoc,doc } from 'firebase/firestore';
 
 export default {
   name: "addUser",
-  setup() {
-    const form = reactive({
-      name: "",
-      email: "",
-      code_user: "",
-      address: "",
-      phone: "", // Corrected numer to ''
-    });
-
-    const onSubmit = async () => {
-      await createUser({ ...form });
-      form.name = "";
-      form.email = "";
-      form.code_user = ""; // Clear code_user as well
-      form.address = ""; // Clear address as well
-      form.phone = ""; // Clear phone as well
+  data() {
+    return {
+      form: {
+        code_user: "",
+        module: "",
+        tx1: "",
+        tx2: "",
+        midTerm: "",
+        finalTerm: ""
+      },
+      users: [],
+      modules: [] // Initialize modules array
     };
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        const uid = await this.getUidFromCodeuser(this.form.code_user); // Get uid based on codeuser
+        if (uid) {
+          const module = this.modules.find(module => module.id === this.form.module); // Tìm mô-đun dựa trên ID
+          if (module) {
+            const average = this.calculateAverage(this.form); // Calculate average score
+            const grade = this.calculateGrade(average); // Calculate grade
+          
+            // Add score for the user with obtained uid
+            await addScore(uid, this.form.code_user, module.id, module.name, this.form.tx1, this.form.tx2, this.form.midTerm, this.form.finalTerm, average, grade);
+          
+            // Clear the form after adding score
+            this.clearForm();
+          } else {
+            console.error('Module not found with ID:', this.form.module);
+          }
+        } else {
+          console.error('User not found with codeuser:', this.form.code_user);
+        }
+      } catch (error) {
+        console.error('Error adding score:', error);
+      }
+    },
+    async getUidFromCodeuser(codeuser) {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'users'));
+        let userData = null;
+        querySnapshot.forEach((doc) => {
+          const user = doc.data();
+          if (user.codeuser === codeuser) {
+            userData = { uid: doc.id, code_user: codeuser };
+          }
+        });
+        return userData;
+      } catch (error) {
+        console.error('Error getting documents: ', error);
+        throw error;
+      }
+    },
+    async deleteScore(scoreId) {
+      try {
+        // Xóa bản ghi từ bảng điểm có ID tương ứng
+        await deleteDoc(doc(db, 'scoreboard', scoreId));
+        console.log('Document with ID', scoreId, 'deleted successfully.');
+      } catch (error) {
+        console.error('Error deleting document:', error);
+      }
+    },
+    async addScore(uid, code_user, module, tx1, tx2, midTerm, finalTerm, average, grade) {
+      try {
+        // Add a new document to the 'scoreboard' collection
+        const docRef = await addDoc(collection(db, 'scoreboard'), {
+          uid: uid,
+          code_user: code_user,
+          module: module,
+          tx1: tx1,
+          tx2: tx2,
+          midTerm: midTerm,
+          finalTerm: finalTerm,
+          average: average,
+          grade: grade
+        });
+        
+        console.log('Document written with ID: ', docRef.id);
+      } catch (error) {
+        console.error('Error adding document: ', error);
+        throw error;
+      }
+    },
+    clearForm() {
+      // Clear form fields
+      this.form.code_user = "";
+      this.form.module = "";
+      this.form.tx1 = "";
+      this.form.tx2 = "";
+      this.form.midTerm = "";
+      this.form.finalTerm = "";
+    },
+    calculateAverage(score) {
+      // Calculate average score
+      const totalScore = parseFloat(score.tx1) + parseFloat(score.tx2) + parseFloat(score.midTerm) + parseFloat(score.finalTerm);
+      return totalScore / 4;
+    },
+    calculateGrade(average) {
+      // Calculate grade
+      if (average >= 8.5) {
+        return 'A';
+      } else if (average >= 7) {
+        return 'B';
+      } else if (average >= 6.5) {
+        return 'C';
+      } else if (average >= 5) {
+        return 'D';
+      } else {
+        return 'F';
+      }
+    }
+  },
+  
+  created() {
+    // Load modules in the created hook
+    this.modules = useLoadmodules();
+  },
+  setup() {
+    const scoreboard = useLoadScoreboard(); // Sử dụng hàm để tải dữ liệu scoreboard
 
-    return { form, onSubmit };
+    // Nếu bạn muốn sử dụng scoreboard trong template, bạn có thể trả về nó từ setup
+    return {
+      scoreboard
+    }
   },
 };
+
 </script>
+

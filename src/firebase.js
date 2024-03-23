@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot , getDocs , query , where } from 'firebase/firestore';
 import { ref, onUnmounted } from 'vue';
 import { getAuth } from 'firebase/auth';
 
@@ -179,10 +179,62 @@ export const useLoadmoduled = () => {
       ...doc.data()
     }));
   });
-  
   onUnmounted(unsubscribe);
   return modules;
 }
 
 export { projectAuth };
+export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, midTerm, finalTerm, average, grade) => {
+  try {
+    // Create a new document reference in the scoreboard collection for the student
+    const docRef = await addDoc(collection(db, 'scoreboard'), {
+      uid: uid,
+      code_user: code_user,
+      moduleId: moduleId, // Lưu trữ ID của mô-đun
+      moduleName: moduleName, // Lưu trữ tên của mô-đun
+      tx1: tx1,
+      tx2: tx2,
+      midTerm: midTerm,
+      finalTerm: finalTerm,
+      average: average,
+      grade: grade // Include average and grade in the document
+    });
 
+    console.log('Document written with ID: ', docRef.id);
+  } catch (error) {
+    console.error('Error adding document: ', error);
+    throw error;
+  }
+};
+// Function to get scoreboard data by uid
+export const getScoreboardByUid = async (uid) => {
+  try {
+    const scoreboardCollection = collection(db, 'scoreboard');
+    const querySnapshot = await getDocs(query(scoreboardCollection, where("uid", "==", uid))); // Query scoreboard collection where uid matches
+    
+    const scoreboardData = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    
+    return scoreboardData;
+  } catch (error) {
+    console.error('Error getting scoreboard data: ', error);
+    throw error;
+  }
+};
+const scoreboardCollection = collection(db, 'scoreboard');
+export const useLoadScoreboard = () => {
+  const scoreboard = ref([]); // Khởi tạo mảng dữ liệu scoreboard
+  const unsubscribe = onSnapshot(scoreboardCollection, (snapshot) => {
+    scoreboard.value = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  });
+
+  // Dừng theo dõi thay đổi khi component bị hủy
+  onUnmounted(unsubscribe);
+
+  return scoreboard;
+};
