@@ -77,27 +77,6 @@
                                 <li id="menu-item-22"
                                     class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-22"><a
                                         href="/">Giới thiệu</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sinh Viên <i class="icon-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li>
-                                            <a class="dropdown-item" href="/sinhvien/thongtin">Thông tin sinh viên</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="/sinhvien/diem">Xem điểm</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="/sinhvien/dangkyhocphan">Đăng ký học phần</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
                                 <li id="menu-item-778"
                                     class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children  menu-item-778 has-dropdown">
                                     <a href="https://mauweb.monamedia.net/blueuni/category/thong-tin-nganh-hoc/"
@@ -115,6 +94,29 @@
                                     class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-25"><a
                                         href="https://mauweb.monamedia.net/blueuni/category/tin-tuc/"
                                         class="nav-top-link">Tin tức</a></li>
+                                        <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sinh Viên <i class="icon-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="/sinhvien/thongtin">Thông tin sinh viên</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/sinhvien/diem">Xem điểm</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/sinhvien/dangkyhocphan">Đăng ký học phần</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/sinhvien/hocphandadangky">Học phần đã đăng ký</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li id="menu-item-23"
                                     class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-23"><a
                                         href="https://mauweb.monamedia.net/blueuni/lien-he/" class="nav-top-link">Liên

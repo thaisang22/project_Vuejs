@@ -19,7 +19,37 @@
             </thead>
             <tbody>
               <tr v-for="(moduleItem) in modules" :key="moduleItem.id">
-                <td><input type="checkbox" v-model="selectedModules" :value="moduleItem.id"></td>
+                <td><input type="checkbox" v-model="selectedModules" :value="moduleItem"></td>
+                <td>{{ moduleItem.name }}</td>
+                <td>{{ moduleItem.credit }}</td>
+                <td>{{ moduleItem.teacher }}</td>
+                <td>{{ moduleItem.className }}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="pt-5">
+        <h4>Danh sách môn học đã đăng ký: {{ selectedModulesInfo.length }} môn, {{ totalCredits }} tín chỉ</h4>
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Xóa</th>
+                <th>Tên môn học</th>
+                <th>Số tín chỉ</th>
+                <th>Giảng viên</th>
+                <th>Lớp</th>
+                <th>Thời khóa biểu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(moduleItem, index) in selectedModulesInfo" :key="moduleItem.id">
+                <td><a href="#" @click.prevent="removeFromSelected(index)">Xóa</a></td>
                 <td>{{ moduleItem.name }}</td>
                 <td>{{ moduleItem.credit }}</td>
                 <td>{{ moduleItem.teacher }}</td>
@@ -35,40 +65,9 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
                 <td><button class="btn btn-primary" @click="confirmRegistration">Xác nhận đăng ký</button></td>
               </tr>
             </tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="pt-5">
-        <h4>Danh sách môn học đã đăng ký:  môn,  tín chỉ</h4>
-        <div>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Xóa</th>
-                <th>Tên môn học</th>
-                <th>Số tín chỉ</th>
-                <th>Giảng viên</th>
-                <th>Lớp</th>
-                <th>Thời khóa biểu</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(moduleItem, index) in registeredModules" :key="moduleItem.id">
-                <td><a href="#" @click.prevent="removeFromRegistered(index)">Xóa</a></td>
-                <td>{{ moduleItem.name }}</td>
-                <td>{{ moduleItem.credit }}</td>
-                <td>{{ moduleItem.teacher }}</td>
-                <td>{{ moduleItem.className }}</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
           </table>
         </div>
       </div>
@@ -77,39 +76,67 @@
 </template>
 
 <script>
-import { useLoadmodules } from '@/firebase';
-import { ref } from 'vue';
+import { useLoadmodules, createdModuled, useLoadmoduled } from '@/firebase';
+import { ref, computed } from 'vue';
+import { getAuth } from 'firebase/auth';
 
 export default {
   name: "Listuser_admin",
   setup() {
     const modules = useLoadmodules();
     const selectedModules = ref([]);
-    const registeredModules = ref([]);
+    const userId = ref(null);
+    const registeredModules = useLoadmoduled();
 
-    const confirmRegistration = () => {
-      // Lặp qua các môn học đã chọn
-      selectedModules.value.forEach(moduleId => {
-        // Tìm môn học trong mảng modules
-        const moduleItem = modules.value.find(item => item.id === moduleId);
-        if (moduleItem) {
-          // Thêm môn học vào mảng registeredModules
-          registeredModules.value.push(moduleItem);
-        }
-      });
-      // Xoá các môn học đã chọn khỏi mảng selectedModules
-      selectedModules.value = [];
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      userId.value = currentUser.uid;
+    }
+
+    const selectedModulesInfo = computed(() => {
+      return selectedModules.value.map(moduleItem => ({
+        name: moduleItem.name,
+        credit: moduleItem.credit,
+        teacher: moduleItem.teacher,
+        className: moduleItem.className,
+        schedule: moduleItem.schedule
+      }));
+    });
+
+    const totalCredits = computed(() => {
+      return selectedModulesInfo.value.reduce((total, moduleItem) => {
+        return total + parseInt(moduleItem.credit);
+      }, 0);
+    });
+
+    const isModuleSelected = (moduleId) => {
+      return registeredModules.value.some(module => module.id_modules.includes(moduleId));
     };
 
-    const removeFromRegistered = (index) => {
-      registeredModules.value.splice(index, 1);
+    const confirmRegistration = async () => {
+      for (const moduleItem of selectedModules.value) {
+        if (!isModuleSelected(moduleItem.id)) {
+          const id_modules = selectedModules.value.map(moduleItem => moduleItem.id);
+          const subjectCollect = { uid: userId.value, id_modules: id_modules };
+
+          await createdModuled(subjectCollect);
+
+          selectedModules.value = [];
+          break; 
+        } else {
+          window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);        }
+      }
     };
 
-    return { modules, selectedModules, registeredModules, confirmRegistration, removeFromRegistered };
+    const removeFromSelected = (index) => {
+      selectedModules.value.splice(index, 1);
+    };
+
+    return { modules, selectedModules, confirmRegistration, removeFromSelected, selectedModulesInfo, totalCredits };
   }
 };
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

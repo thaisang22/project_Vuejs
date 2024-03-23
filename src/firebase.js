@@ -104,7 +104,6 @@ export const getUserDataById = async (userId) => {
   }
 };
 
-
 // Create module(học phần)
 export const createModule = async module => {
   return await addDoc(modulesCollection, module);
@@ -134,6 +133,47 @@ export const deleteModule = async id => {
 export const useLoadmodules = () => {
   const modules = ref([]);
   const unsubscribe = onSnapshot(modulesCollection, snapshot => {
+    modules.value = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  });
+  
+  onUnmounted(unsubscribe);
+  return modules;
+}
+
+
+// Register module( đăng ký học phần)
+export const createdModuled = async module => {
+  return await addDoc(subjectCollection, module);
+};
+
+
+// get module form firebase
+export const getModuled = async id => {
+  const docRef = doc(subjectCollection, id);
+  const module = await getDoc(docRef);
+  return module.exists() ? module.data() : null;
+}
+
+// update module form firebase
+export const updateModuled = async (id, module) => { 
+  const docRef = doc(subjectCollection, id);
+  await updateDoc(docRef, module);
+}
+
+
+// delete module from firebase
+export const deleteModuled = async id => {
+  const docRef = doc(subjectCollection, id);
+  await deleteDoc(docRef);
+}
+
+// load list module form firebase
+export const useLoadmoduled = () => {
+  const modules = ref([]);
+  const unsubscribe = onSnapshot(subjectCollection, snapshot => {
     modules.value = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()

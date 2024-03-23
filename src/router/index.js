@@ -6,6 +6,7 @@ import StudentInfo from '@/components/StudentInfo.vue'
 import StudentScores from '@/components/StudentScores.vue'
 import LoginUser from '@/components/UserLogin.vue'
 import RegisterObject from '@/components/RegisterObject.vue'
+import RegisteredOJ from '@/components/RegisteredOJ.vue'
 // ----------------------------------------------------------------
 // admin
 import AddUser from '@/components/global_admin/add.vue'
@@ -40,6 +41,7 @@ const routes = [
       { path: "/sinhvien/thongtin", name: 'studentinfo', component: StudentInfo },
       { path: '/sinhvien/diem', name: 'studentscores', component: StudentScores },
       { path: '/sinhvien/dangkyhocphan', name: 'registerobject', component: RegisterObject },
+      { path: '/sinhvien/hocphandadangky', name: 'registeredOJ', component: RegisteredOJ },
     ],
     beforeEnter: requireAuth,
   },
