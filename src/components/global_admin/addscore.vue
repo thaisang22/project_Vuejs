@@ -44,13 +44,14 @@
                       <div class="form-group mt-3">
                         <label for="">HỌC PHẦN</label>
                         <div class="input-group">
-                          <select v-model="form.code_user" class="form-control" required>
-                            <option value="">Chọn học phần</option>
+                          <select v-model="form.module" class="form-control" required>
+                            <option value="" disabled selected>Chọn học phần</option>
                             <option value="hocphan1">Học phần 1</option>
                             <option value="hocphan2">Học phần 2</option>
                             <option value="hocphan3">Học phần 3</option>
                             <!-- Thêm các option khác tương ứng với danh sách học phần của bạn -->
                           </select>
+
                           <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
                           </div>

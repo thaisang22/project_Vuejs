@@ -5,10 +5,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Tên môn học</th>
-              <th>Số tín chỉ</th>
-              <th>Giảng viên</th>
-              <th>Lớp</th>
+              <th style="width: 23%">Tên môn học</th>
+              <th style="width: 6%;">Số TC</th>
+              <th style="width: 18%;">Giảng viên</th>
+              <th style="width: 14%;">Lớp</th>
+              <th style="width: 4%;">SL</th>
               <th>Thời khóa biểu</th>
             </tr>
           </thead>
@@ -18,6 +19,7 @@
               <td>{{ moduleItem.credit }}</td>
               <td>{{ moduleItem.teacher }}</td>
               <td>{{ moduleItem.className }}</td>
+              <td>{{ moduleItem.quantity }}</td>
               <td>{{ moduleItem.schedule }}</td>
             </tr>
           </tbody>
@@ -35,8 +37,8 @@ import { getAuth } from 'firebase/auth';
 export default {
   name: "Listuser_admin",
   setup() {
-    const modules = useLoadmodules(); 
-    const registeredModules = useLoadmoduled(); 
+    const modules = useLoadmodules();
+    const registeredModules = useLoadmoduled();
     const registeredModulesInfo = ref([]);
     const auth = getAuth();
     const currentUser = auth.currentUser;
@@ -55,6 +57,7 @@ export default {
                 credit: moduleItem.credit,
                 teacher: moduleItem.teacher,
                 className: moduleItem.className,
+                quantity: moduleItem.quantity,
                 schedule: moduleItem.schedule
               };
             } else {
@@ -77,4 +80,40 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+h3 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.table td {
+  color: #0a3552;
+}
+
+.table th {
+  background-color: #0071BB;
+  font-weight: bold;
+  color: rgb(247, 247, 247);
+}
+
+.table-body-content {
+  color: #1060d6;
+}
+</style>

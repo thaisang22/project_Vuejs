@@ -208,7 +208,7 @@
                 <li class="nav-item">
                   <router-link to="/admin/addobject" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>add học phần</p>
+                    <p>ADD HỌC PHẦN</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
