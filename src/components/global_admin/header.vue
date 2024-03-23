@@ -189,38 +189,38 @@
                 <li class="nav-item">
                   <router-link to="/admin/listuser" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>USER LIST</p>
+                    <p>User List </p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/admin/adduser" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ADD USER</p>
+                    <p>Create Account User</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/admin/addscore" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ADD SCORE USER</p>
+                    <p>Add Score User</p>
                   </router-link>
                 </li>
 
                 <li class="nav-item">
                   <router-link to="/admin/addobject" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ADD HỌC PHẦN</p>
+                    <p>Add học phần</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/admin/addnotificate" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>ENTER NOTIFICATE</p>
+                    <p>Tạo Thông báo</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link to="/" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>CHAT USER</p>
+                    <p>Chat user</p>
                   </router-link>
                 </li>
               </ul>

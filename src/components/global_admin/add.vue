@@ -24,7 +24,7 @@
         <div class="">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Nhập thông tin cho sinh viên mới</h3>
+              <h3 class="card-title">Tạo tài khoản cho sinh viên</h3>
               <div class="card-tools">
                 <button
                   type="button"
@@ -41,7 +41,7 @@
               <div v-if="successMessage" class="alert alert-primary">{{successMessage}}</div>
               <form action="" @submit.prevent="Register">
                 <div class="form-group">
-                <label for="">fullname</label>
+                <label for="">Display Name</label>
                 <input
                   v-model="name"
                   class="form-control"
