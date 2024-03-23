@@ -117,22 +117,32 @@ export default {
     const isModuleSelected = (moduleId) => {
       return registeredModules.value.some(module => module.id_modules.includes(moduleId));
     };
-
     const confirmRegistration = async () => {
-      for (const moduleItem of selectedModules.value) {
-        if (!isModuleSelected(moduleItem.id)) {
-          const id_modules = selectedModules.value.map(moduleItem => moduleItem.id);
-          const subjectCollect = { uid: userId.value, id_modules: id_modules };
+  for (let i = selectedModules.value.length - 1; i >= 0; i--) {
+    const moduleItem = selectedModules.value[i];
+    // Kiểm tra xem môn học đã được đăng ký chưa
+    if (!isModuleSelected(moduleItem.id)) {
+      // Môn học chưa được đăng ký, thêm vào danh sách đăng ký
+      const id_modules = selectedModules.value.map(moduleItem => moduleItem.id);
+      const subjectCollect = { uid: userId.value, id_modules: id_modules };
 
-          await createdModuled(subjectCollect);
+      await createdModuled(subjectCollect);
 
-          selectedModules.value = [];
-          break;
-        } else {
-          window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);
-        }
-      }
-    };
+      selectedModules.value = [];
+      // Xuất thông báo đăng ký thành công
+      window.alert(`Học phần ${moduleItem.name} đã được đăng ký thành công.`);
+      break;
+    } else {
+      // Môn học đã được đăng ký, hiển thị thông báo
+      window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);
+      // Xóa môn học khỏi danh sách đăng ký vì nó đã được đăng ký trước đó
+      selectedModules.value.splice(i, 1);
+    }
+  }
+};
+
+
+
 
     const removeFromSelected = (index) => {
       selectedModules.value.splice(index, 1);
