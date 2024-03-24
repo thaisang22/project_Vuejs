@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { useLoadmodules, createdModuled, useLoadmoduled } from '@/firebase';
+import { useLoadmodules, createdModuled, checkUserRegisteredModule } from '@/firebase';
 import { ref, computed } from 'vue';
 import { getAuth } from 'firebase/auth';
 
@@ -89,13 +89,13 @@ export default {
     const modules = useLoadmodules();
     const selectedModules = ref([]);
     const userId = ref(null);
-    const registeredModules = useLoadmoduled();
 
     const auth = getAuth();
+  
     const currentUser = auth.currentUser;
-    if (currentUser) {
-      userId.value = currentUser.uid;
-    }
+  if (currentUser) {
+    userId.value = currentUser.uid;
+  }
 
     const selectedModulesInfo = computed(() => {
       return selectedModules.value.map(moduleItem => ({
@@ -103,7 +103,6 @@ export default {
         credit: moduleItem.credit,
         teacher: moduleItem.teacher,
         className: moduleItem.className,
-        quantity: moduleItem.quantity,
         schedule: moduleItem.schedule
       }));
     });
@@ -114,35 +113,22 @@ export default {
       }, 0);
     });
 
-    const isModuleSelected = (moduleId) => {
-      return registeredModules.value.some(module => module.id_modules.includes(moduleId));
-    };
     const confirmRegistration = async () => {
-  for (let i = selectedModules.value.length - 1; i >= 0; i--) {
-    const moduleItem = selectedModules.value[i];
-    // Kiểm tra xem môn học đã được đăng ký chưa
-    if (!isModuleSelected(moduleItem.id)) {
-      // Môn học chưa được đăng ký, thêm vào danh sách đăng ký
-      const id_modules = selectedModules.value.map(moduleItem => moduleItem.id);
-      const subjectCollect = { uid: userId.value, id_modules: id_modules };
+    const id_modules = selectedModules.value.map(moduleItem => moduleItem.id);
 
-      await createdModuled(subjectCollect);
+    // Kiểm tra xem người dùng đã đăng ký id_module này hay chưa
+    const isRegistered = await checkUserRegisteredModule(userId.value, id_modules[0]); // Giả sử chỉ kiểm tra đối với id_module đầu tiên
 
-      selectedModules.value = [];
-      // Xuất thông báo đăng ký thành công
-      window.alert(`Học phần ${moduleItem.name} đã được đăng ký thành công.`);
-      break;
+    if (isRegistered) {
+      // Nếu đã đăng ký, xuất ra thông báo tương ứng
+      alert('Bạn đã đăng ký môn học này trước đó.');
     } else {
-      // Môn học đã được đăng ký, hiển thị thông báo
-      window.alert(`Học phần ${moduleItem.name} đã được đăng ký.`);
-      // Xóa môn học khỏi danh sách đăng ký vì nó đã được đăng ký trước đó
-      selectedModules.value.splice(i, 1);
+      // Nếu chưa đăng ký, tiến hành đăng ký môn học
+      const subjectCollect = { uid: userId.value, id_modules: id_modules };
+      await createdModuled(subjectCollect);
+      selectedModules.value = [];
     }
-  }
-};
-
-
-
+  };
 
     const removeFromSelected = (index) => {
       selectedModules.value.splice(index, 1);
@@ -150,8 +136,8 @@ export default {
 
     return { modules, selectedModules, confirmRegistration, removeFromSelected, selectedModulesInfo, totalCredits };
   }
+  
 };
-
 </script>
 
 <style scoped>
@@ -176,9 +162,11 @@ h4 {
   text-align: left;
   border: 1px solid #ddd;
 }
+
 .table td {
   color: #0a3552;
 }
+
 .table th {
   background-color: #0071BB;
   font-weight: bold;
