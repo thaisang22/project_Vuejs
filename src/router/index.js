@@ -27,8 +27,12 @@ import { projectAuth } from '@/firebase'
 
 const requireAuth = (to, from, next) => {
   const user = projectAuth.currentUser;
-  if (!user) next({ name: "Login", params: {} })
-  else next();
+  if (!user) {
+    alert("Bạn cần đăng nhập để truy cập trang này!");
+    next({ name: "Login", params: {} });
+  } else {
+    next();
+  }
 }
 
 const routes = [

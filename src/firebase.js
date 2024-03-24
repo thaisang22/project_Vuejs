@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot, getDocs } from 'firebase/firestore';
 import { ref, onUnmounted } from 'vue';
 import { getAuth } from 'firebase/auth';
 
@@ -122,12 +122,72 @@ export const updateModule = async (id, module) => {
   await updateDoc(docRef, module);
 }
 
-
 // delete module from firebase
 export const deleteModule = async id => {
   const docRef = doc(modulesCollection, id);
   await deleteDoc(docRef);
 }
+
+/// lấy uid của user trên subject
+///
+export const getUserSubjectDocuments = async userId => {
+  try {
+    const subjectCollectionRef = collection(db, 'subject');
+    const querySnapshot = await getDocs(subjectCollectionRef);
+    const userSubjectDocuments = [];
+
+    querySnapshot.forEach(doc => {
+      const data = doc.data();
+      // Kiểm tra xem tài liệu có uid khớp với userId không
+      if (data.uid === userId) {
+        userSubjectDocuments.push({ id: doc.id, ...data });
+      }
+    });
+
+    return userSubjectDocuments;
+  } catch (error) {
+    console.error('Lỗi khi lấy các tài liệu subject của người dùng:', error);
+    return [];
+  }
+};
+
+
+///////////////////////////////////////
+//////////////////////////////////////////////
+///////////////////////////////////
+
+
+
+// Trong hàm removeModuleIdFromDocument
+export const removeModuleIdFromDocument = async (documentId, moduleIdToRemove) => {
+  const db = getFirestore(); // Lấy instance của Firestore
+  console.log(documentId)
+  console.log(moduleIdToRemove)
+  try {
+    // Bước 1: Lấy tài liệu subject dựa trên ID
+    const subjectDocRef = doc(db, 'subject', documentId);
+    const subjectDocSnapshot = await getDoc(subjectDocRef);
+
+
+    if (subjectDocSnapshot.exists()) {
+      // Bước 2: Lấy mảng id_modules từ dữ liệu của tài liệu subject
+      let idModulesArray = subjectDocSnapshot.data().id_modules;
+      console.log(idModulesArray)
+      // Bước 3: Loại bỏ ID của module khỏi mảng id_modules
+      idModulesArray = idModulesArray.filter(id => id !== moduleIdToRemove);
+
+      // Bước 4: Cập nhật tài liệu subject với mảng id_modules đã cập nhật
+      await updateDoc(subjectDocRef, { id_modules: idModulesArray });
+
+      console.log('Đã xóa ID của module khỏi tài liệu subject thành công.');
+    } else {
+      console.error('Tài liệu subject không tồn tại.');
+    }
+  } catch (error) {
+    console.error('Lỗi khi xóa ID của module khỏi tài liệu subject:', error);
+  }
+};
+
 
 // load list module form firebase
 export const useLoadmodules = () => {
@@ -164,12 +224,6 @@ export const updateModuled = async (id, module) => {
 }
 
 
-// delete module from firebase
-export const deleteModuled = async id => {
-  const docRef = doc(subjectCollection, id);
-  await deleteDoc(docRef);
-}
-
 // load list module form firebase
 export const useLoadmoduled = () => {
   const modules = ref([]);
@@ -184,5 +238,20 @@ export const useLoadmoduled = () => {
   return modules;
 }
 
-export { projectAuth };
+export const checkUserRegisteredModule = async (userId, moduleId) => {
+  try {
+    // Lấy danh sách các môn học mà người dùng đã đăng ký
+    const userSubjects = await getUserSubjectDocuments(userId);
+
+    // Kiểm tra xem trong danh sách các môn học đã đăng ký có id_module cần kiểm tra không
+    const isRegistered = userSubjects.some(subject => subject.id_modules.includes(moduleId));
+
+    return isRegistered;
+  } catch (error) {
+    console.error('Lỗi khi kiểm tra đăng ký môn học:', error);
+    throw error;
+  }
+};
+
+export { projectAuth  };
 
