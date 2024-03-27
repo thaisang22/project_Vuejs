@@ -1,146 +1,158 @@
 <template>
     <div>
       <div class="student-info-page">
-      <header>
-        <h1>THÔNG TIN SINH VIÊN</h1>
-      </header>
+        <header>
+          <h1>THÔNG TIN SINH VIÊN</h1>
+        </header>
   
-      <div class="student-details" v-for="user in users" :key="user.id">
-        <div class="student-info" v-if="user">
-          <div class="d-flex">
-            <div class="label">Mã sinh viên:</div>
-            <div class="value">{{ user.codeuser }}</div>
+        <div class="student-details" v-for="user in users" :key="user.id">
+          <div class="student-info" v-if="user">
+            <div class="d-flex">
+              <div class="label">Mã sinh viên:</div>
+              <div class="value">{{ user.codeuser }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Họ tên:</div>
+              <div class="value">{{ user.fullName }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Ngày sinh:</div>
+              <div class="value">{{ user.dateuser }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Nơi sinh:</div>
+              <div class="value">{{ user.local_address }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Địa chỉ:</div>
+              <div class="value">{{ user.address }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Điện thoại:</div>
+              <div class="value">{{ user.phone }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Email:</div>
+              <div class="value">{{ user.email }}</div>
+            </div>
           </div>
-          <div class="d-flex">
-            <div class="label">Họ tên:</div>
-            <div class="value">{{ user.fullName }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Ngày sinh:</div>
-            <div class="value">{{ user.dateuser }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Nơi sinh:</div>
-            <div class="value">{{ user.local_address }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Địa chỉ:</div>
-            <div class="value">{{ user.address }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Điện thoại:</div>
-            <div class="value">{{ user.phone }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Email:</div>
-            <div class="value">{{ user.email }}</div>
+  
+          <div class="student-education" v-if="user">
+            <div class="d-flex">
+              <div class="label">Ngành đào tạo:</div>
+              <div class="value">{{ user.major }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Chuyên ngành:</div>
+              <div class="value">{{ user.majorMain }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="label">Lớp học:</div>
+              <div class="value">{{ user.classuser }}</div>
+            </div>
           </div>
         </div>
+      </div>
   
-        <div class="student-education" v-if="user">
-          <div class="d-flex">
-            <div class="label">Ngành đào tạo:</div>
-            <div class="value">{{ user.major }}</div>
+      <div v-if="scoreboardData">
+        <h2 class="text-center my-5">BẢNG GHI KẾT QUẢ HỌC TẬP</h2>
+        <div class="mxemdiem">
+          <div class="mQC04TieuDe">
+            <div class="QC04TXemDiemSTT"><span>STT</span></div>
+            <div class="QC04TXemDiemTenMon"><span>Môn học</span></div>
+            <div class="QC04TXemDiemDVHT"><span>STC</span></div>
+            <div class="QC04TXemDiemTBKT"><span>Điểm TBKT</span></div>
+            <div class="QC04TXemDiemThi"><span>Điểm thi</span></div>
+            <div class="QC04TXemDiemTKM"><span>TKM</span></div>
           </div>
-          <div class="d-flex">
-            <div class="label">Chuyên ngành:</div>
-            <div class="value">{{ user.majorMain }}</div>
-          </div>
-          <div class="d-flex">
-            <div class="label">Lớp học:</div>
-            <div class="value">{{ user.classuser }}</div>
+          <div class="mthanbangdiem">
+            <div class="mdong" v-for="(item, index) in scoreboardData" :key="index">
+              <div class="QC04TXemDiemSTT"><span>{{ index + 1 }}</span></div>
+              <div class="QC04TXemDiemTenMon"><span>{{ item.moduleName }}</span></div>
+              <div class="QC04TXemDiemDVHT"><span>{{ item.soTinChi }}</span></div>
+              <div class="QC04TXemDiemTBKT"><span>{{ item.average }}</span></div>
+              <div class="QC04TXemDiemThi"><span>{{ item.finalTerm }}</span></div>
+              <div class="QC04TXemDiemTKM"><span>{{ item.grade }}</span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-        <div class="container" style="max-width: 70%;">
-            <h2 class="text-center my-5">BẢNG GHI KẾT QUẢ HỌC TẬP</h2>
-            <div class="mxemdiem">
-                <div class="mQC04TieuDe">
-                    <div class="QC04XemDiemSTT"><span>STT</span></div>
-                    <div class="QC04XemDiemTenMon"><span>Tên học phần</span></div>
-                    <div class="QC04XemDiemDVHT"><span>TC</span></div>
-                    <div class="QC04XemDiemDiemQT">
-                        <div class="QC04XemDiemQT"><span>Điểm quá trình</span></div>
-                        <div class="QC04XemDiemHS1"><span class="QC04SpanHS">KTTX</span>
-                            <div class="QC04XemDiemCot"><span>01</span></div>
-                            <div class="QC04XemDiemCot"><span>02</span></div>
-                        </div>
-                        <div class="QC04XemDiemHS2"><span class="QC04SpanHS">KTĐK</span>
-                            <div class="QC04XemDiemCot"><span>01</span></div>
-                            <div class="QC04XemDiemCot"><span>02</span></div>
-                        </div>
-                    </div>
-                    <div class="QC04XemDiemTBKT"><span>TBKT</span></div>
-                    <div class="QC04XemDiemThi"><span>Thi1</span></div>
-                    <div class="QC04XemDiemThi"><span>Thi2</span></div>
-                    <div class="QC04XemDiemTKM"><span>HP</span></div>
-                    <div class="QC04XemDiemQD"><span>Điểm<br>Chữ</span></div>
-                    <div class="QC04XemDiemQD"><span>Điểm<br>QĐ</span></div>
-                </div>
-                <div class="mthanbangdiem">
-                    <div class="dnamhochocky">
-                        <div class="dnamhoc"><span>Năm học: 2022 - 2023</span></div>
-                        <div class="dhocky"><span>Học kỳ: 1</span></div>
-                        <div class="dTBC"><span>TBC Học kỳ: 7.50</span></div>
-                    </div>
-                    <div class="mdong">
-                        <div class="QC04TXemDiemSTT"><span>1</span></div>
-                        <div class="QC04TXemDiemTenMon"><span>Tin học</span></div>
-                        <div class="QC04TXemDiemDVHT"><span>3</span></div>
-                        <div class="QC04TXemDiemCot"><span>8.0</span></div>
-                        <div class="QC04TXemDiemCot"><span>&nbsp;</span></div>
-                        <div class="QC04TXemDiemCot"><span>8.5</span></div>
-                        <div class="QC04TXemDiemCot"><span>&nbsp;</span></div>
-                        <div class="QC04TXemDiemTBKT"><span>8.3</span></div>
-                        <div class="QC04TXemDiemThi"><span>8.0</span></div>
-                        <div class="QC04TXemDiemThi"><span>&nbsp;</span></div>
-                        <div class="QC04TXemDiemTKM"><span>8.1</span></div>
-                        <div class="QC04TXemDiemC"><span>B</span></div>
-                        <div class="QC04TXemDiemQD"><span>3.0</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
+  </template>
   
-<script>
-import { ref } from 'vue';
-import { getUserDataById } from '@/firebase';
-import { projectAuth } from '@/firebase'; 
+  <script>
+  import { ref } from 'vue';
+  import { getUserDataById, fetchAverageByUid } from '@/firebase';
+  import { projectAuth } from '@/firebase';
+  
+  export default {
+    name: "Listuser_admin",
+    setup() {
+  const users = ref([]);
+  const scoreboardData = ref([]);
 
-export default {
-  name: "Listuser_admin",
-  setup() {
-const users = ref([]);
-
-const fetchUserData = async () => {
-  try {
+  const fetchUserData = async () => {
+    try {
       const user = projectAuth.currentUser;
 
-    if (user) {
-      const userIDs = [user.uid];
-      await Promise.all(userIDs.map(async (userID) => {
-        const userData = await getUserDataById(userID);
+      if (user) {
+        const userData = await getUserData(user.uid);
         users.value.push(userData);
-      }));
-    } else {
-      console.error("User not logged in");
+      } else {
+        console.error("User not logged in");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
     }
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-  }
-};
+  };
 
-fetchUserData();
+  const fetchScoreboardData = async () => {
+    try {
+      const user = projectAuth.currentUser;
 
-return { users };
+      if (user) {
+        const averageData = await fetchAverage(user.uid);
+        scoreboardData.value = averageData; // Fixed assigning the fetched data to scoreboardData
+      } else {
+        console.error("User not logged in");
+      }
+    } catch (error) {
+      console.error("Error fetching scoreboard data:", error);
+    }
+  };
+
+  const getUserData = async (uid) => {
+    try {
+      const userData = await getUserDataById(uid);
+      return userData;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return null;
+    }
+  };
+
+  const fetchAverage = async (uid) => {
+    try {
+      const averageData = await fetchAverageByUid(uid);
+      return averageData;
+    } catch (error) {
+      console.error("Error fetching average data:", error);
+      return null;
+    }
+  };
+
+  // Call the fetchUserData and fetchScoreboardData functions
+  fetchUserData();
+  fetchScoreboardData();
+
+  // Perform test to see if scoreboardData is fetched properly for the logged-in user
+  console.log("Scoreboard data for the logged-in user:", scoreboardData.value);
+
+  return { users, scoreboardData };
 },
 
-};
-</script>
+  };
+  </script>
 
 <style scoped>
 .d-flex {

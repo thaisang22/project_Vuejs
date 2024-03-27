@@ -112,7 +112,7 @@
 <script>
 import db from  "@/firebase.js";
 import { addScore  , useLoadmodules , useLoadScoreboard} from '@/firebase.js'; // Import the function to add score
-import { collection, addDoc , getDocs, deleteDoc,doc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc,doc } from 'firebase/firestore';
 
 export default {
   name: "addUser",
@@ -156,21 +156,22 @@ export default {
       }
     },
     async getUidFromCodeuser(codeuser) {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
-        let userData = null;
-        querySnapshot.forEach((doc) => {
-          const user = doc.data();
-          if (user.codeuser === codeuser) {
-            userData = { uid: doc.id, code_user: codeuser };
-          }
-        });
-        return userData;
-      } catch (error) {
-        console.error('Error getting documents: ', error);
-        throw error;
+  try {
+    const querySnapshot = await getDocs(collection(db, 'users'));
+    let uid = null; // Khởi tạo biến uid
+    querySnapshot.forEach((doc) => {
+      const user = doc.data();
+      if (user.codeuser === codeuser) {
+        uid = doc.id; // Gán giá trị của doc.id cho biến uid
       }
-    },
+    });
+    return uid; // Trả về giá trị của uid
+  } catch (error) {
+    console.error('Error getting documents: ', error);
+    throw error;
+  }
+},
+
     async deleteScore(scoreId) {
       try {
         // Xóa bản ghi từ bảng điểm có ID tương ứng
@@ -180,27 +181,7 @@ export default {
         console.error('Error deleting document:', error);
       }
     },
-    async addScore(uid, code_user, module, tx1, tx2, midTerm, finalTerm, average, grade) {
-      try {
-        // Add a new document to the 'scoreboard' collection
-        const docRef = await addDoc(collection(db, 'scoreboard'), {
-          uid: uid,
-          code_user: code_user,
-          module: module,
-          tx1: tx1,
-          tx2: tx2,
-          midTerm: midTerm,
-          finalTerm: finalTerm,
-          average: average,
-          grade: grade
-        });
-        
-        console.log('Document written with ID: ', docRef.id);
-      } catch (error) {
-        console.error('Error adding document: ', error);
-        throw error;
-      }
-    },
+  
     clearForm() {
       // Clear form fields
       this.form.code_user = "";

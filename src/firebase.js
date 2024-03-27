@@ -251,43 +251,62 @@ export const useLoadmoduled = () => {
 export { projectAuth };
 export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, midTerm, finalTerm, average, grade) => {
   try {
-    // Create a new document reference in the scoreboard collection for the student
-    const docRef = await addDoc(collection(db, 'scoreboard'), {
+    // Query for documents with the same uid and moduleId
+    const querySnapshot = await getDocs(query(collection(db, 'scoreboard'), where('uid', '==', uid), where('moduleId', '==', moduleId)));
+
+    // If there are any documents with the same uid and moduleId, throw an error
+    if (!querySnapshot.empty) {
+      throw new Error('ĐIỂM CỦA SINH VIÊN NÀY ĐÃ ĐƯỢC NHẬP');
+    }
+
+    // If no existing document, create a new one
+    await addDoc(collection(db, 'scoreboard'), {
       uid: uid,
       code_user: code_user,
-      moduleId: moduleId, // Lưu trữ ID của mô-đun
-      moduleName: moduleName, // Lưu trữ tên của mô-đun
+      moduleId: moduleId,
+      moduleName: moduleName,
       tx1: tx1,
       tx2: tx2,
       midTerm: midTerm,
       finalTerm: finalTerm,
       average: average,
-      grade: grade // Include average and grade in the document
+      grade: grade
     });
 
-    console.log('Document written with ID: ', docRef.id);
+    // Return uid instead of docRef.id
+    return uid;
   } catch (error) {
-    console.error('Error adding document: ', error);
+    alert('Error adding document: ' + error.message);
     throw error;
   }
 };
+
+
 // Function to get scoreboard data by uid
-export const getScoreboardByUid = async (uid) => {
+export const fetchAverageByUid = async (uid) => {
   try {
-    const scoreboardCollection = collection(db, 'scoreboard');
-    const querySnapshot = await getDocs(query(scoreboardCollection, where("uid", "==", uid))); // Query scoreboard collection where uid matches
-    
-    const scoreboardData = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-    
-    return scoreboardData;
+    const querySnapshot = await getDocs(query(collection(db, 'scoreboard'), where('uid', '==', uid)));
+    const results = [];
+
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        results.push(data); // Add document data to results array
+      });
+    } else {
+      console.error("No documents found for the given uid");
+      return []; // Return an empty array if no documents found
+    }
+
+    return results; // Return array of document data
   } catch (error) {
-    console.error('Error getting scoreboard data: ', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
+
+
+
 const scoreboardCollection = collection(db, 'scoreboard');
 export const useLoadScoreboard = () => {
   const scoreboard = ref([]); // Khởi tạo mảng dữ liệu scoreboard
