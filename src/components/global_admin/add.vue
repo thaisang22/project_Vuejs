@@ -41,36 +41,38 @@
               <div v-if="successMessage" class="alert alert-primary">{{successMessage}}</div>
               <form action="" @submit.prevent="Register">
                 <div class="form-group">
-                <label for="">Display Name</label>
-                <input
-                  v-model="name"
-                  class="form-control"
-                  type="text"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">Email</label>
-                <input
-                  type="text"
-                  v-model="email"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group mt-3">
-                <label for="">password</label>
-                <input
-                  type="text"
-                  v-model="password"
-                  class="form-control"
-                  required
-                />
-              </div>
+                  <label for="name">Display Name (Max 25 characters)</label>
+                  <input
+                    v-model="name"
+                    class="form-control"
+                    type="text"
+                    required
+                    maxlength="25"
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    v-model="email"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="password">Password (Min 8 characters)</label>
+                  <input
+                    type="password"
+                    v-model="password"
+                    class="form-control"
+                    required
+                    minlength="8"
+                  />
+                </div>
 
-              <button type="submit" class="btn btn-success mt-3">
-                Create User
-              </button>
+                <button type="submit" class="btn btn-success mt-3">
+                  Create User
+                </button>
               </form>
             </div>
             <!-- /.card-body -->
