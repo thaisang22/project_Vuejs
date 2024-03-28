@@ -37,19 +37,19 @@
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm TX1</label>
-                        <input type="text" v-model="form.tx1" class="form-control" required />
+                        <input type="number" v-model="form.tx1" class="form-control" required min="0" max="10" />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm TX2</label>
-                        <input type="text" v-model="form.tx2" class="form-control" required />
+                        <input type="number" v-model="form.tx2" class="form-control" required min="0" max="10" />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm giữa kỳ</label>
-                        <input type="text" v-model="form.midTerm" class="form-control" required />
+                        <input type="number" v-model="form.midTerm" class="form-control" required min="0" max="10" />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm cuối kỳ</label>
-                        <input type="text" v-model="form.finalTerm" class="form-control" required />
+                        <input type="number" v-model="form.finalTerm" class="form-control" required min="0" max="10" />
                       </div>
                       <button type="submit" class="btn btn-success mt-3">Thêm điểm</button>
                     </form>
