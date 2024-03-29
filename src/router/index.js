@@ -19,6 +19,7 @@ import ListUser from '@/components/global_admin/list_user.vue'
 import AddScore from '@/components/global_admin/addscore.vue'
 import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
+import AddNotificate_User from '@/components/global_admin/addnotificate_user.vue'
 import List_accouts from '@/components/global_admin/list_accouts.vue'
 import Edit_Module from '@/components/global_admin/edit_object.vue'
 import Login_admin from '@/components/global_admin/login_admin.vue'
@@ -26,7 +27,7 @@ import Login_admin from '@/components/global_admin/login_admin.vue'
 // khác
 import NotFound from '@/components/NotFound.vue'
 
-import { projectAuth ,searchUserByUidAndRole , searchAdminByUidAndRole} from '@/firebase'
+import { projectAuth, searchUserByUidAndRole, searchAdminByUidAndRole } from '@/firebase'
 
 const requireAuth = async (to, from, next) => {
   const user = projectAuth.currentUser;
@@ -94,7 +95,7 @@ const routes = [
     name: 'Login',
     component: LoginUser, // Sử dụng IndexView
   },
-  
+
   {
     path: '/',
     name: 'index',
@@ -127,8 +128,8 @@ const routes = [
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
       { path: '/admin/edit_module/:id', name: 'edit_module', component: Edit_Module },// edit
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
-      { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
-
+      { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate },// add thông báo
+      { path: "/admin/addnotificate_user", name: 'AddNotificate_User', component: AddNotificate_User },// add thông báo user
     ],
     beforeEnter: requireAuthAdmin
   },

@@ -21,7 +21,7 @@
                             <div class="d-table-cell">
                                 <div class="login-form">
                                     <div class="logo">
-                                        <a href="index.html"><img src="../Content/img/logo.png" class="login-logo"></a>
+                                        <a href="/"><img src="../Content/img/logo.png" class="login-logo"></a>
                                     </div>
                                     <h3>Cổng Thông Tin Sinh Viên</h3>
                                     <p>Đăng nhập hệ thống</p>
