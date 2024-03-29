@@ -32,6 +32,33 @@ const projectAuth = getAuth(firebaseApp);
 
 const modulesCollection = collection(db, 'modules');
 const notiCollection = collection(db, 'notification');
+const noticeUserCollection = collection(db, 'notificationuser');
+
+export const createNotice_User = async notices_user => {
+  return await addDoc(noticeUserCollection, notices_user)
+}
+
+export const useLoadNotice_User = () => {
+  const notices_user = ref([]);
+
+  const unsubscribe = onSnapshot(
+    query(noticeUserCollection, orderBy("datetime_user", "desc")),
+    snapshot => {
+      notices_user.value = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+  );
+
+  onUnmounted(unsubscribe);
+  return notices_user;
+};
+
+export const deleteNotice_User = async id => {
+  const docRef = doc(noticeUserCollection, id);
+  await deleteDoc(docRef);
+}
 
 export const createnotice = async notice => {
   return await addDoc(notiCollection, notice)
@@ -53,6 +80,10 @@ export const useLoadNotice = () => {
   return notices;
 };
 
+export const deleteNotice = async id => {
+  const docRef = doc(notiCollection, id);
+  await deleteDoc(docRef);
+}
 
 export const createsubject = async subject => {
   return await addDoc(subjectCollection, subject)
