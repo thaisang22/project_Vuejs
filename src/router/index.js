@@ -8,6 +8,8 @@ import LoginUser from '@/components/UserLogin.vue'
 import RegisterObject from '@/components/RegisterObject.vue'
 import RegisteredOJ from '@/components/RegisteredOJ.vue'
 import Notification from '@/components/Notification_user.vue'
+import resetPassword from '@/components/resetpassword.vue'
+import index from '../views/user/body.vue'
 // ----------------------------------------------------------------
 // admin
 import AddUser from '@/components/global_admin/add.vue'
@@ -78,6 +80,7 @@ const routes = [
     component: IndexUserView,
     children: [
       { path: "/sinhvien/thongtin", name: 'studentinfo', component: StudentInfo },
+      { path: "/sinhvien/thongtin", name: 'studentinfo', component: StudentInfo },
       { path: '/sinhvien/diem', name: 'studentscores', component: StudentScores },
       { path: '/sinhvien/dangkyhocphan', name: 'registerobject', component: RegisterObject },
       { path: '/sinhvien/hocphandadangky', name: 'registeredOJ', component: RegisteredOJ },
@@ -91,6 +94,12 @@ const routes = [
     name: 'Login',
     component: LoginUser, // Sử dụng IndexView
   },
+  
+  {
+    path: '/',
+    name: 'index',
+    component: index, // Sử dụng IndexView
+  },
 
   // ---------------------------------------------------------------------------------------------------------
   // notfound page 404
@@ -98,7 +107,11 @@ const routes = [
     path: "/:catchAll(.*)",
     component: NotFound,
   },
-
+  {
+    path: '/resetpassword',
+    name: 'resetpassword',
+    component: resetPassword, // Sử dụng IndexView
+  },
 
   // ---------------------------------------------------------------------------------------------------------
   // amin

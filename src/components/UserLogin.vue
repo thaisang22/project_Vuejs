@@ -51,6 +51,7 @@
                   />
                                         </div>
                                         <button type="submit" class="btn-login mt-4"> Đăng nhập</button>
+                                        <a type="submit" class=""> <router-link class="dropdown-item" to="/resetpassword">Quên mật khẩu</router-link></a>
                                         <!-- Display error message if login fails -->
                                         <p v-if="error" class="text-danger">{{ error }}</p>
                                     </form>

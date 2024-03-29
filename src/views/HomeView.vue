@@ -5,7 +5,6 @@
     <!-- <userCreate/> -->
     <userList/>
   </div>
- 
 </template>
 
 <script>

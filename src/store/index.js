@@ -56,6 +56,7 @@ export default createStore({
           uid: response.user.uid,
           email: email,
           displayName: name,
+          role:0
         });
 
         // Update Vuex state with the registered user

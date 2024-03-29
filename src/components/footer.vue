@@ -370,7 +370,8 @@ export default {
     name: 'NComponent',
 }
 </script>
-<style scope="scope">
+
+<style scoped>
 .footer-wrapper {
     width: 100%;
     position: relative;

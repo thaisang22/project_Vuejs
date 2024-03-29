@@ -54,29 +54,38 @@
         </div>
       </div>
   
+    
       <div v-if="scoreboardData">
-        <h2 class="text-center my-5">BẢNG GHI KẾT QUẢ HỌC TẬP</h2>
-        <div class="mxemdiem">
-          <div class="mQC04TieuDe">
-            <div class="QC04TXemDiemSTT"><span>STT</span></div>
-            <div class="QC04TXemDiemTenMon"><span>Môn học</span></div>
-            <div class="QC04TXemDiemDVHT"><span>STC</span></div>
-            <div class="QC04TXemDiemTBKT"><span>Điểm TBKT</span></div>
-            <div class="QC04TXemDiemThi"><span>Điểm thi</span></div>
-            <div class="QC04TXemDiemTKM"><span>TKM</span></div>
-          </div>
-          <div class="mthanbangdiem">
-            <div class="mdong" v-for="(item, index) in scoreboardData" :key="index">
-              <div class="QC04TXemDiemSTT"><span>{{ index + 1 }}</span></div>
-              <div class="QC04TXemDiemTenMon"><span>{{ item.moduleName }}</span></div>
-              <div class="QC04TXemDiemDVHT"><span>{{ item.soTinChi }}</span></div>
-              <div class="QC04TXemDiemTBKT"><span>{{ item.average }}</span></div>
-              <div class="QC04TXemDiemThi"><span>{{ item.finalTerm }}</span></div>
-              <div class="QC04TXemDiemTKM"><span>{{ item.grade }}</span></div>
-            </div>
-          </div>
-        </div>
+      <h2 class="text-center my-5">BẢNG GHI KẾT QUẢ HỌC TẬP</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Môn học</th>
+              <th>STC</th>
+              <th>Điểm TX1</th>
+              <th>Điểm TX2</th>
+              <th>Điểm TBKT</th>
+              <th>Điểm thi</th>
+              <th>TKM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in scoreboardData" :key="index">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.moduleName }}</td>
+              <td>{{ item.credit }}</td>
+              <td>{{ item.tx1 }}</td>
+              <td>{{ item.tx2 }}</td>
+              <td>{{ item.average }}</td>
+              <td>{{ item.finalTerm }}</td>
+              <td>{{ item.grade }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
     </div>
   </template>
   
