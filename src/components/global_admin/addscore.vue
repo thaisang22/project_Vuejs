@@ -8,10 +8,10 @@
 
       <!-- Main content -->
       <section class="content">
-        <button class="w-25" @click="exportToExcel('scoreboard', 'scoreboard')">
-                Export to Excel
-            </button>
         <div class="container-fluid">
+          <button class="w-25 btn btn-success mb-3" @click="exportToExcel('scoreboard', 'scoreboard')" >
+            Export to Excel
+        </button>
           <div class="row">
             <div class="col-3">
               <div class="">
@@ -115,7 +115,7 @@
 import db from  "@/firebase.js";
 import { addScore, useLoadmodules, useLoadScoreboard } from '@/firebase.js'; // Import the function to add score
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { utils, writeFile } from '/HK5/ungdungweb/VUEJS/project_Vuejs/node_modules/xlsx';
+import { utils, writeFile } from 'xlsx';
 
 
 export default {
