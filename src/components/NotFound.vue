@@ -41,6 +41,7 @@ export default {
     background-image: url(../Content/img/gif-erorr/dribbble_1.gif);
     height: 400px;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 .four_zero_four_bg h1 {
