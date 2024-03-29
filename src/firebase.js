@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot , getDocs , query , where } from 'firebase/firestore';
-import { ref, onUnmounted } from 'vue';
+import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot , getDocs , query , where, orderBy } from 'firebase/firestore';
+import { ref, onUnmounted  } from 'vue';
 import { getAuth } from 'firebase/auth';
 
 
@@ -30,11 +30,33 @@ const subjectCollection = collection(db, 'subject');
 const projectAuth = getAuth(firebaseApp);
 
 const modulesCollection = collection(db, 'modules');
+const notiCollection = collection(db, 'notification');
+
+export const createnotice = async notice => {
+  return await addDoc(notiCollection, notice)
+}
+export const useLoadNotice = () => {
+  const notices = ref([]);
+
+  const unsubscribe = onSnapshot(
+    query(notiCollection, orderBy("datetime", "desc")), 
+    snapshot => {
+      notices.value = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+  );
+
+  onUnmounted(unsubscribe);
+  return notices;
+};
 
 
 export const createsubject = async subject => {
   return await addDoc(subjectCollection, subject)
 }
+
 
 
 export const deleteSubject = async id => {
@@ -143,6 +165,7 @@ export const useLoadmodules = () => {
   return modules;
 }
 
+/// id uid từ module
 export const getUserSubjectDocuments = async userId => {
   try {
     const subjectCollectionRef = collection(db, 'subject');
