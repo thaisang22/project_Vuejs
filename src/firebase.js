@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import  { initializeApp} from 'firebase/app';
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot , getDocs , query , where } from 'firebase/firestore';
 import { ref, onUnmounted } from 'vue';
 import { getAuth } from 'firebase/auth';
@@ -30,6 +30,11 @@ const subjectCollection = collection(db, 'subject');
 const projectAuth = getAuth(firebaseApp);
 
 const modulesCollection = collection(db, 'modules');
+
+const projectFirestore = getFirestore(firebaseApp);
+
+
+export { projectAuth, projectFirestore};
 
 
 export const createsubject = async subject => {
@@ -73,7 +78,7 @@ export const deleteUser = async id => {
 }
 
 
-// load list user form firebase
+
 export const useLoadUsers = () => {
   const users = ref([]);
   const unsubscribe = onSnapshot(usersCollection, snapshot => {
@@ -85,7 +90,7 @@ export const useLoadUsers = () => {
   
   onUnmounted(unsubscribe);
   return users;
-}
+};
 
 export const getUserDataById = async (userId) => {
   
@@ -163,6 +168,82 @@ export const getUserSubjectDocuments = async userId => {
     return [];
   }
 };
+export const searchAdminByEmailAndRole = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email), where('role', '==', 1));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByUidAndRole = async (uid) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('uid', '==', uid), where('role', '==', 0));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchAdminByUidAndRole = async (uid) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('uid', '==', uid), where('role', '==', 1));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByEmailAndRole = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email), where('role', '==', 0));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByEmail = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email));
+    const snapshot = await getDocs(userRef);
+    return !snapshot.empty; // Trả về true nếu có người dùng, ngược lại trả về false
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+
+
 
 // Register module( đăng ký học phần)
 export const createdModuled = async module => {
@@ -248,7 +329,6 @@ export const useLoadmoduled = () => {
   return modules;
 }
 
-export { projectAuth };
 export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, midTerm, finalTerm, average, grade) => {
   try {
     // Query for documents with the same uid and moduleId

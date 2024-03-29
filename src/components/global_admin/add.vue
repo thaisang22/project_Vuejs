@@ -58,6 +58,7 @@
                   required
                 />
               </div>
+              <i v-if="displayErrorMessage" class="alert alert-primary">{{displayErrorMessage}}</i>
               <div class="form-group mt-3">
                 <label for="">password</label>
                 <input
@@ -86,39 +87,51 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-
+import { searchUserByEmail } from '@/firebase'
 
 export default {
-  name:"RegisterUserComponent",
+  name: "RegisterUserComponent",
   setup() {
     const name = ref('')
     const email = ref('')
     const password = ref('')
     const error = ref(null)
-    const successMessage = ref(null) // New ref for success message
-
+    const successMessage = ref(null)
+    const displayErrorMessage = ref(null) // Define displayErrorMessage here
     const store = useStore()
 
     const Register = async () => {
-      try {
-        await store.dispatch('register', {
-          email: email.value,
-          password: password.value,
-          name: name.value
-        })
-
-        // Set success message and clear form fields
-        successMessage.value = 'Registration successful!'
-        name.value = ''
-        email.value = ''
-        password.value = ''
-      } catch (err) {
-        error.value = err.message
-      }
+  try {
+    const CheckEmail = await searchUserByEmail(email.value);
+    if (CheckEmail) {
+   // Email đã tồn tại trong cơ sở dữ liệu
+   displayErrorMessage.value = "Email đã tồn tại";
+      email.value = '';
+    } else {
+            // Email không tồn tại trong cơ sở dữ liệu
+            await store.dispatch('register', {
+        email: email.value,
+        password: password.value,
+        name: name.value
+      });
+      
+      name.value = '';
+      email.value = '';
+      password.value = '';
     }
-
-    return { Register, name, email, password, error, successMessage }
+    successMessage.value = 'Registration successful!';
+  } catch (err) {
+    // Xử lý lỗi và hiển thị thông báo lỗi
+    error.value = err.message;
+    displayErrorMessage.value = "Đã xảy ra lỗi trong quá trình đăng ký";
   }
-};
+}
 
+
+
+    return { Register, name, email, password, error, successMessage, displayErrorMessage }
+  },
+};
 </script>
+
+

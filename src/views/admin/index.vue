@@ -1,24 +1,29 @@
 <template>
-  <div class="">
-    <header_admin/>
+  <div>
+    <!-- Sử dụng điều kiện để kiểm tra router và ẩn header và footer nếu router là /admin/loginadmin -->
+    <header_admin :class="{ 'd-none': $route.path === '/admin/loginadmin' }"/>
     <router-view/>
-    <footer_admin/>
+    <footer_admin :class="{ 'd-none': $route.path === '/admin/loginadmin' }"/>
   </div>
-   
-  </template>
+</template>
+
+<script>
+import header_admin from '@/components/global_admin/header.vue';
+import footer_admin from '@/components/global_admin/footer.vue';  
+
+export default {
+  name: "IndexView",
+  components: {
+    header_admin,
+    footer_admin,
   
-  <script>
-  import header_admin from '@/components/global_admin/header.vue';
-  import footer_admin from '@/components/global_admin/footer.vue';  
-  export default {
-    name: "IndexView",
-    components: {
-      header_admin,
-      footer_admin,
-    }
-  };
-
-
-
+  }
+};
 </script>
-  
+
+<style>
+/* Định nghĩa lớp d-none */
+.d-none {
+  display: none;
+}
+</style>

@@ -5,7 +5,7 @@
 
 
 <style lang="scss" scoped>
-@import "@/assets/dist/css/adminlte.min.css";
+
 @import "@/assets/plugins/fontawesome-free/css/all.min.css";
 @import "@/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css";
 @import "@/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css";

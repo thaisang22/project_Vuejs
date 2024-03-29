@@ -113,6 +113,9 @@
                                             <a class="dropdown-item" href="/sinhvien/hocphandadangky">Học phần đã đăng ký</a>
                                         </li>
                                         <li>
+                                            <a class="dropdown-item" href="/sinhvien/hocphandadangky">Thông báo từ cố vấn</a>
+                                        </li>
+                                        <li>
                                             <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
                                         </li>
                                     </ul>

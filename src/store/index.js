@@ -32,27 +32,32 @@ export default createStore({
     async register(context, { email, password, name }) {
       const auth = getAuth();
       const usersCollection = collection(db, 'users');
+    
       try {
+        // Check if the email already exists
+       
+    
         // Create user with email and password
         const response = await createUserWithEmailAndPassword(auth, email, password);
-
+    
         // Update user profile with display name
         await updateProfile(response.user, { displayName: name });
+    
         // Add user information to Firestore collection
-
         await setDoc(doc(usersCollection, response.user.uid), {
           uid: response.user.uid,
           email: email,
           displayName: name
         });
-
+        
         // Update Vuex state with the registered user
-        context.commit('SET_USER', response.user);
+          context.commit('SET_USER', response.user);
       } catch (error) {
         console.error('Registration Error:', error.message);
-        throw new Error('Unable to register user');
-      }
+        throw new Error('Email đã tồn tại');  
+      } 
     },
+    
     async deleteUserAccount(context, uid) {
       const auth = getAuth();
 

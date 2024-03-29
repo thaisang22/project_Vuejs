@@ -20,7 +20,8 @@
             </div>
           </div><!-- /.container-fluid -->
         </section>
-    
+        <button @click="exportToCsv" class="btn btn-success">Xuất danh sách người dùng</button>
+
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
@@ -83,21 +84,69 @@
       </div>
 </div>
 </template>
-
 <script>
-import { deleteUser , useLoadUsers } from '@/firebase';
+import { useLoadUsers } from '@/firebase';
 
 export default {
-    
   name: "Listuser_admin",
-  
   setup() {
-        const users = useLoadUsers()
-        return { users , deleteUser}
-    }
+    const users = useLoadUsers();
 
+    // Hàm xuất CSV
+    const exportToCsv = () => {
+      const csvContent = generateCsvContent(users.value);
+      if (csvContent) {
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'users.csv';
+        link.click();
+      } else {
+        console.error('No data to export.');
+      }
+    };
+
+    // Hàm tạo nội dung CSV
+    const generateCsvContent = (data) => {
+      if (!Array.isArray(data) || data.length === 0) {
+        console.error('Data is not a non-empty array:', data);
+        return '';
+      }
+
+      const header = ['Mã số sinh viên', 'Họ tên', 'Email', 'Số điện thoại', 'Quê quán', 'Địa chỉ', 'Ngày sinh', 'Lớp', 'Ngành Đào tạo', 'Chuyên ngành'];
+      const csvRows = [header.join(',')];
+      
+      data.forEach((user) => {
+        if (typeof user === 'object') {
+          const row = [
+            user.codeuser,
+            user.fullName,
+            user.email,
+            user.phone,
+            user.local_address,
+            user.address,
+            user.dateuser,
+            user.classuser,
+            user.major,
+            user.majorMain
+          ];
+
+          // Thêm dấu ngoặc kép cho các giá trị có chứa dấu phẩy
+          const formattedRow = row.map(cell => typeof cell === 'string' && cell.includes(',') ? `"${cell}"` : cell);
+          csvRows.push(formattedRow.join(','));
+        }
+      });
+      
+      return csvRows.join('\n');
+    };
+
+    return { users, exportToCsv };
+  }
 };
 </script>
+
+
+
 
 <style lang="scss" scoped>
 
