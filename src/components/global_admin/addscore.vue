@@ -32,7 +32,8 @@
                         <label for="">Chọn học phần</label>
                         <select v-model="form.module" class="form-control" required>
                           <option value="" disabled selected>Chọn học phần</option>
-                          <option v-for="module in modules" :key="module.id" :value="module.id">{{ module.name }}</option>
+                          <option v-for="module in modules" :key="module.id" :value="module.id">{{ module.name }}
+                          </option>
                         </select>
                       </div>
                       <div class="form-group mt-3">
@@ -77,25 +78,25 @@
                     </thead>
                     <tbody>
                       <tr v-for="(score, index) in scoreboard" :key="index">
-  <td>{{ score.code_user }}</td>
-  <td>{{ score.moduleName }}</td> <!-- Sửa thành score.moduleName để hiển thị tên mô-đun -->
-  <td>{{ score.tx1 }}</td>
-  <td>{{ score.tx2 }}</td>
-  <td>{{ score.midTerm }}</td>
-  <td>{{ score.finalTerm }}</td>
-  <td>{{ score.average }}</td>
-  <td>{{ score.grade }}</td>
-  <td>
-    <router-link :to="`/admin/edit/${score.uid}`">
-      <button class="btn btn-primary btn-sm me-2">
-        Edit
-      </button>
-    </router-link>
-    <button class="btn btn-primary btn-sm me-2" @click="deleteScore(score.id)">
-      Delete
-    </button>
-  </td>
-</tr>
+                        <td>{{ score.code_user }}</td>
+                        <td>{{ score.moduleName }}</td> <!-- Sửa thành score.moduleName để hiển thị tên mô-đun -->
+                        <td>{{ score.tx1 }}</td>
+                        <td>{{ score.tx2 }}</td>
+                        <td>{{ score.midTerm }}</td>
+                        <td>{{ score.finalTerm }}</td>
+                        <td>{{ score.average }}</td>
+                        <td>{{ score.grade }}</td>
+                        <td>
+                          <router-link :to="`/admin/edit/${score.uid}`">
+                            <button class="btn btn-primary btn-sm me-2">
+                              Edit
+                            </button>
+                          </router-link>
+                          <button class="btn btn-primary btn-sm me-2" @click="deleteScore(score.id)">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
 
                     </tbody>
                   </table>
@@ -110,9 +111,9 @@
 </template>
 
 <script>
-import db from  "@/firebase.js";
-import { addScore  , useLoadmodules , useLoadScoreboard} from '@/firebase.js'; // Import the function to add score
-import { collection, getDocs, deleteDoc,doc } from 'firebase/firestore';
+import db from "@/firebase.js";
+import { addScore, useLoadmodules, useLoadScoreboard } from '@/firebase.js'; // Import the function to add score
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 
 export default {
   name: "addUser",
@@ -139,10 +140,10 @@ export default {
           if (module) {
             const average = this.calculateAverage(this.form); // Calculate average score
             const grade = this.calculateGrade(average); // Calculate grade
-          
+
             // Add score for the user with obtained uid
             await addScore(uid, this.form.code_user, module.id, module.name, this.form.tx1, this.form.tx2, this.form.midTerm, this.form.finalTerm, average, grade);
-          
+
             // Clear the form after adding score
             this.clearForm();
           } else {
@@ -156,21 +157,21 @@ export default {
       }
     },
     async getUidFromCodeuser(codeuser) {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'users'));
-    let uid = null; // Khởi tạo biến uid
-    querySnapshot.forEach((doc) => {
-      const user = doc.data();
-      if (user.codeuser === codeuser) {
-        uid = doc.id; // Gán giá trị của doc.id cho biến uid
+      try {
+        const querySnapshot = await getDocs(collection(db, 'users'));
+        let uid = null; // Khởi tạo biến uid
+        querySnapshot.forEach((doc) => {
+          const user = doc.data();
+          if (user.codeuser === codeuser) {
+            uid = doc.id; // Gán giá trị của doc.id cho biến uid
+          }
+        });
+        return uid; // Trả về giá trị của uid
+      } catch (error) {
+        console.error('Error getting documents: ', error);
+        throw error;
       }
-    });
-    return uid; // Trả về giá trị của uid
-  } catch (error) {
-    console.error('Error getting documents: ', error);
-    throw error;
-  }
-},
+    },
 
     async deleteScore(scoreId) {
       try {
@@ -181,7 +182,7 @@ export default {
         console.error('Error deleting document:', error);
       }
     },
-  
+
     clearForm() {
       // Clear form fields
       this.form.code_user = "";
@@ -211,7 +212,7 @@ export default {
       }
     }
   },
-  
+
   created() {
     // Load modules in the created hook
     this.modules = useLoadmodules();
@@ -227,4 +228,3 @@ export default {
 };
 
 </script>
-

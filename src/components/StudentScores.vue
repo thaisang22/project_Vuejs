@@ -1,59 +1,5 @@
 <template>
     <div>
-      <div class="student-info-page">
-        <header>
-          <h1>THÔNG TIN SINH VIÊN</h1>
-        </header>
-  
-        <div class="student-details" v-for="user in users" :key="user.id">
-          <div class="student-info" v-if="user">
-            <div class="d-flex">
-              <div class="label">Mã sinh viên:</div>
-              <div class="value">{{ user.codeuser }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Họ tên:</div>
-              <div class="value">{{ user.fullName }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Ngày sinh:</div>
-              <div class="value">{{ user.dateuser }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Nơi sinh:</div>
-              <div class="value">{{ user.local_address }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Địa chỉ:</div>
-              <div class="value">{{ user.address }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Điện thoại:</div>
-              <div class="value">{{ user.phone }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Email:</div>
-              <div class="value">{{ user.email }}</div>
-            </div>
-          </div>
-  
-          <div class="student-education" v-if="user">
-            <div class="d-flex">
-              <div class="label">Ngành đào tạo:</div>
-              <div class="value">{{ user.major }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Chuyên ngành:</div>
-              <div class="value">{{ user.majorMain }}</div>
-            </div>
-            <div class="d-flex">
-              <div class="label">Lớp học:</div>
-              <div class="value">{{ user.classuser }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
       <div v-if="scoreboardData">
         <h2 class="text-center my-5">BẢNG GHI KẾT QUẢ HỌC TẬP</h2>
         <div class="mxemdiem">

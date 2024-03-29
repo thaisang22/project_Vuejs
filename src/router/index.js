@@ -19,6 +19,7 @@ import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
 import List_accouts from '@/components/global_admin/list_accouts.vue'
 import Edit_Module from '@/components/global_admin/edit_object.vue'
+import NotificationUser from '@/components/global_admin/addnotificate_user.vue'
 
 // ----------------------------------------------------------------
 // khác
@@ -35,7 +36,6 @@ const requireAuth = (to, from, next) => {
     next();
   }
 }
-
 
 const routes = [
   // user
@@ -81,8 +81,8 @@ const routes = [
       { path: "/admin/addscore", name: 'AddScore', component: AddScore },// add điểm
       { path: '/admin/edit_module/:id', name: 'edit_module', component: Edit_Module },// edit
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
-      { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
-
+      { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate },// add thông báo
+      { path: "/admin/addnotificate_user", name: 'AddNotificateUser', component: NotificationUser },// add thông báo
     ]
   }
 

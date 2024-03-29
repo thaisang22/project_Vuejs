@@ -31,10 +31,41 @@ const projectAuth = getAuth(firebaseApp);
 
 const modulesCollection = collection(db, 'modules');
 const notiCollection = collection(db, 'notification');
+const noticeUserCollection = collection(db, 'notificationuser');
 
-export const createnotice = async notice => {
+export const createNotice_User = async notices_user => {
+  return await addDoc(noticeUserCollection, notices_user)
+}
+
+export const useLoadNotice_User = () => {
+  const notices_user = ref([]);
+
+  const unsubscribe = onSnapshot(
+    query(noticeUserCollection, orderBy("datetime_user", "desc")),
+    snapshot => {
+      notices_user.value = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+  );
+
+  onUnmounted(unsubscribe);
+  return notices_user;
+};
+
+
+
+export const deleteNotice_User = async id => {
+  const docRef = doc(noticeUserCollection, id);
+  await deleteDoc(docRef);
+}
+
+
+export const createNotice = async notice => {
   return await addDoc(notiCollection, notice)
 }
+
 export const useLoadNotice = () => {
   const notices = ref([]);
 
@@ -52,17 +83,20 @@ export const useLoadNotice = () => {
   return notices;
 };
 
+export const deleteNotice = async id => {
+  const docRef = doc(notiCollection, id);
+  await deleteDoc(docRef);
+}
 
 export const createsubject = async subject => {
   return await addDoc(subjectCollection, subject)
 }
 
-
-
 export const deleteSubject = async id => {
   const docRef = doc(subjectCollection, id);
   await deleteDoc(docRef);
 }
+
 export const updateSubject = async (id, subject) => { 
   const docRef = doc(subjectCollection, id);
   await updateDoc(docRef, subject);
@@ -109,6 +143,7 @@ export const useLoadUsers = () => {
   return users;
 }
 
+// lấy id user 
 export const getUserDataById = async (userId) => {
   
   try {
@@ -187,6 +222,7 @@ export const getUserSubjectDocuments = async userId => {
   }
 };
 
+
 // Register module( đăng ký học phần)
 export const createdModuled = async module => {
   return await addDoc(subjectCollection, module);
@@ -216,13 +252,10 @@ export const deleteModuled = async id => {
 // Trong hàm removeModuleIdFromDocument
 export const removeModuleIdFromDocument = async (documentId, moduleIdToRemove) => {
   const db = getFirestore(); // Lấy instance của Firestore
-  console.log(documentId)
-  console.log(moduleIdToRemove)
   try {
     // Bước 1: Lấy tài liệu subject dựa trên ID
     const subjectDocRef = doc(db, 'subject', documentId);
     const subjectDocSnapshot = await getDoc(subjectDocRef);
-
 
     if (subjectDocSnapshot.exists()) {
       // Bước 2: Lấy mảng id_modules từ dữ liệu của tài liệu subject
@@ -327,7 +360,6 @@ export const fetchAverageByUid = async (uid) => {
     throw error;
   }
 };
-
 
 
 const scoreboardCollection = collection(db, 'scoreboard');
