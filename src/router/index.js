@@ -19,20 +19,53 @@ import AddObject from '@/components/global_admin/add_object.vue'
 import AddNotificate from '@/components/global_admin/add_notification.vue'
 import List_accouts from '@/components/global_admin/list_accouts.vue'
 import Edit_Module from '@/components/global_admin/edit_object.vue'
-
+import Login_admin from '@/components/global_admin/login_admin.vue'
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
 
-import { projectAuth } from '@/firebase'
+import { projectAuth ,searchUserByUidAndRole , searchAdminByUidAndRole} from '@/firebase'
 
-const requireAuth = (to, from, next) => {
+const requireAuth = async (to, from, next) => {
   const user = projectAuth.currentUser;
   if (!user) {
     alert("Bạn cần đăng nhập để truy cập trang này!");
     next({ name: "Login", params: {} });
   } else {
-    next();
+    // Lấy thông tin người dùng từ cơ sở dữ liệu dựa trên UID
+    try {
+      const userData = await searchUserByUidAndRole(user.uid);
+      if (!userData || userData.role !== 0) {
+        alert("Bạn không có quyền truy cập vào trang này!");
+        next(from); // Quay lại trang trước đó nếu không có quyền truy cập
+      } else {
+        next(); // Cho phép truy cập nếu có quyền
+      }
+    } catch (error) {
+      console.error("Lỗi khi kiểm tra vai trò người dùng:", error);
+      next(from); // Quay lại trang trước đó nếu xảy ra lỗi
+    }
+  }
+}
+const requireAuthAdmin = async (to, from, next) => {
+  const user = projectAuth.currentUser;
+  if (!user) {
+    alert("Bạn cần đăng nhập để truy cập trang này!");
+    next({ name: "loginadmin", params: {} });
+  } else {
+    // Lấy thông tin người dùng từ cơ sở dữ liệu dựa trên UID
+    try {
+      const userData = await searchAdminByUidAndRole(user.uid);
+      if (!userData || userData.role !== 1) {
+        alert("Bạn không có quyền truy cập vào trang này!");
+        next(from);// Quay lại trang trước đó nếu không có quyền truy cập
+      } else {
+        next(); // Cho phép truy cập nếu có quyền
+      }
+    } catch (error) {
+      console.error("Lỗi khi kiểm tra vai trò người dùng:", error);
+      next(from);// Quay lại trang trước đó nếu xảy ra lỗi
+    }
   }
 }
 
@@ -83,8 +116,10 @@ const routes = [
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
       { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate }// add thông báo
 
-    ]
-  }
+    ],
+    beforeEnter: requireAuthAdmin
+  },
+  { path: "/admin/loginadmin", name: 'loginadmin', component: Login_admin },
 
 ]
 

@@ -8,9 +8,11 @@
 
       <!-- Main content -->
       <section class="content">
+        <button class="w-25" @click="exportToExcel('scoreboard', 'scoreboard')">
+                Export to Excel
+            </button>
         <div class="container-fluid">
           <div class="row">
-
             <div class="col-3">
               <div class="">
                 <div class="card card-primary">
@@ -37,19 +39,19 @@
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm TX1</label>
-                        <input type="number" v-model="form.tx1" class="form-control" required min="0" max="10" />
+                        <input type="text" v-model="form.tx1" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm TX2</label>
-                        <input type="number" v-model="form.tx2" class="form-control" required min="0" max="10" />
+                        <input type="text" v-model="form.tx2" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm giữa kỳ</label>
-                        <input type="number" v-model="form.midTerm" class="form-control" required min="0" max="10" />
+                        <input type="text" v-model="form.midTerm" class="form-control" required />
                       </div>
                       <div class="form-group mt-3">
                         <label for="">Điểm cuối kỳ</label>
-                        <input type="number" v-model="form.finalTerm" class="form-control" required min="0" max="10" />
+                        <input type="text" v-model="form.finalTerm" class="form-control" required />
                       </div>
                       <button type="submit" class="btn btn-success mt-3">Thêm điểm</button>
                     </form>
@@ -111,8 +113,10 @@
 
 <script>
 import db from  "@/firebase.js";
-import { addScore  , useLoadmodules , useLoadScoreboard} from '@/firebase.js'; // Import the function to add score
-import { collection, getDocs, deleteDoc,doc } from 'firebase/firestore';
+import { addScore, useLoadmodules, useLoadScoreboard } from '@/firebase.js'; // Import the function to add score
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { utils, writeFile } from '/HK5/ungdungweb/VUEJS/project_Vuejs/node_modules/xlsx';
+
 
 export default {
   name: "addUser",
@@ -133,17 +137,13 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const uid = await this.getUidFromCodeuser(this.form.code_user); // Get uid based on codeuser
+        const uid = await this.getUidFromCodeuser(this.form.code_user);
         if (uid) {
-          const module = this.modules.find(module => module.id === this.form.module); // Tìm mô-đun dựa trên ID
+          const module = this.modules.find(module => module.id === this.form.module);
           if (module) {
-            const average = this.calculateAverage(this.form); // Calculate average score
-            const grade = this.calculateGrade(average); // Calculate grade
-          
-            // Add score for the user with obtained uid
+            const average = this.calculateAverage(this.form);
+            const grade = this.calculateGrade(average);
             await addScore(uid, this.form.code_user, module.id, module.name, this.form.tx1, this.form.tx2, this.form.midTerm, this.form.finalTerm, average, grade);
-          
-            // Clear the form after adding score
             this.clearForm();
           } else {
             console.error('Module not found with ID:', this.form.module);
@@ -156,34 +156,30 @@ export default {
       }
     },
     async getUidFromCodeuser(codeuser) {
-  try {
-    const querySnapshot = await getDocs(collection(db, 'users'));
-    let uid = null; // Khởi tạo biến uid
-    querySnapshot.forEach((doc) => {
-      const user = doc.data();
-      if (user.codeuser === codeuser) {
-        uid = doc.id; // Gán giá trị của doc.id cho biến uid
+      try {
+        const querySnapshot = await getDocs(collection(db, 'users'));
+        let uid = null;
+        querySnapshot.forEach((doc) => {
+          const user = doc.data();
+          if (user.codeuser === codeuser) {
+            uid = doc.id;
+          }
+        });
+        return uid;
+      } catch (error) {
+        console.error('Error getting documents: ', error);
+        throw error;
       }
-    });
-    return uid; // Trả về giá trị của uid
-  } catch (error) {
-    console.error('Error getting documents: ', error);
-    throw error;
-  }
-},
-
+    },
     async deleteScore(scoreId) {
       try {
-        // Xóa bản ghi từ bảng điểm có ID tương ứng
         await deleteDoc(doc(db, 'scoreboard', scoreId));
         console.log('Document with ID', scoreId, 'deleted successfully.');
       } catch (error) {
         console.error('Error deleting document:', error);
       }
     },
-  
     clearForm() {
-      // Clear form fields
       this.form.code_user = "";
       this.form.module = "";
       this.form.tx1 = "";
@@ -192,12 +188,10 @@ export default {
       this.form.finalTerm = "";
     },
     calculateAverage(score) {
-      // Calculate average score
       const totalScore = parseFloat(score.tx1) + parseFloat(score.tx2) + parseFloat(score.midTerm) + parseFloat(score.finalTerm);
       return totalScore / 4;
     },
     calculateGrade(average) {
-      // Calculate grade
       if (average >= 8.5) {
         return 'A';
       } else if (average >= 7) {
@@ -211,20 +205,49 @@ export default {
       }
     }
   },
-  
   created() {
-    // Load modules in the created hook
     this.modules = useLoadmodules();
   },
   setup() {
-    const scoreboard = useLoadScoreboard(); // Sử dụng hàm để tải dữ liệu scoreboard
+  const scoreboard = useLoadScoreboard();
 
-    // Nếu bạn muốn sử dụng scoreboard trong template, bạn có thể trả về nó từ setup
-    return {
-      scoreboard
+  function exportToExcel(fileName, sheetName) {
+    if (scoreboard.length === 0) {
+      console.error('Chưa có data');
+      return;
     }
-  },
-};
+    const columnMapping = {
+      code_user: 'Mã số sinh viên',
+      moduleName: 'Tên học phần',
+      tx1: 'Điểm TX1',
+      tx2: 'Điểm TX2',
+      midTerm: 'Điểm giữa kỳ',
+      average: 'Điểm trung bình',
+      grade: 'Điểm chữ',
+      finalTerm: 'Điểm cuối kỳ'
+    };
+    const translatedScores = scoreboard.value.map(score => {
+      const translatedScore = {};
+      Object.keys(columnMapping).forEach(key => {
+        translatedScore[columnMapping[key]] = score[key];
+      });
+      return translatedScore;
+    });
 
+    const ws = utils.json_to_sheet(translatedScores);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, sheetName);
+    writeFile(wb, `${fileName}.xlsx`);
+  }
+
+
+  return {
+    scoreboard,
+    exportToExcel,
+  };
+}
+
+};
 </script>
+
 

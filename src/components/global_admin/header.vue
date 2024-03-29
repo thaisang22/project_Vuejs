@@ -156,7 +156,8 @@
             <img src="@/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">Xin chào,</a>
+            <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
           </div>
         </div>
   
@@ -247,10 +248,25 @@
 
 <script>
 
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { getAuth, signOut } from 'firebase/auth';
 
 export default {
-  name: "HeaderView",
+    name:'HeaderAdminView',
+  setup() {
+    const store = useStore();
+    const router = useRouter();
 
+    const handleLogout = async () => {
+      const auth = getAuth();
+      await signOut(auth); 
+      await store.dispatch('logOut'); 
+      router.push('/');
+    }
+
+    return { handleLogout };
+  }
 };
 </script>
 

@@ -67,6 +67,7 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { searchUserByEmailAndRole } from '@/firebase';
 
 export default {
   name: "LoginComponent",
@@ -80,12 +81,14 @@ export default {
 
     const Login = async () => {
       try {
-        await store.dispatch('logIn', {
+        const checkUserRole =  searchUserByEmailAndRole(email.value);
+        if (checkUserRole) { await store.dispatch('logIn', {
           email: email.value,
           password: password.value
         })
         router.push('/sinhvien/thongtin')
-      }
+      }}
+   
       catch (err) {
         error.value = err.message
       }
