@@ -187,6 +187,83 @@ export const getUserSubjectDocuments = async userId => {
   }
 };
 
+
+export const searchAdminByEmailAndRole = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email), where('role', '==', 1));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByUidAndRole = async (uid) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('uid', '==', uid), where('role', '==', 0));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchAdminByUidAndRole = async (uid) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('uid', '==', uid), where('role', '==', 1));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByEmailAndRole = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email), where('role', '==', 0));
+    const snapshot = await getDocs(userRef);
+    if (snapshot.empty) {
+      return null; // Không tìm thấy người dùng hoặc vai trò không phù hợp
+    } else {
+      // Lấy dữ liệu của người dùng đầu tiên trong snapshot
+      const user = snapshot.docs[0].data();
+      return user;
+    }
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+export const searchUserByEmail = async (email) => {
+  try {
+    const userRef = query(collection(db, 'users'), where('email', '==', email));
+    const snapshot = await getDocs(userRef);
+    return !snapshot.empty; // Trả về true nếu có người dùng, ngược lại trả về false
+  } catch (error) {
+    console.error('Lỗi khi tìm kiếm người dùng:', error);
+    throw error;
+  }
+};
+
+
 // Register module( đăng ký học phần)
 export const createdModuled = async module => {
   return await addDoc(subjectCollection, module);
