@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot , getDocs , query , where, orderBy } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, deleteDoc, onSnapshot ,getDocs , query , where, orderBy } from 'firebase/firestore';
 import { ref, onUnmounted  } from 'vue';
 import { getAuth } from 'firebase/auth';
 
@@ -17,9 +17,10 @@ const  Config = {
 
 
 const firebaseApp = initializeApp(Config);
-const db = getFirestore(firebaseApp);
+const db = getFirestore(firebaseApp); 
 const usersCollection = collection(db, 'users');
 export default db;
+export { firebaseApp , projectAuth}
 // // firebase db bảng điểm 
 // const scoreCollection = collection(db, 'scoreboar');
 // // firebase db  notification
@@ -94,17 +95,22 @@ export const deleteUser = async id => {
   await deleteDoc(docRef);
 }
 
-
+const usersQuery = query(usersCollection, where('role', '==', 0));
 // load list user form firebase
 export const useLoadUsers = () => {
   const users = ref([]);
-  const unsubscribe = onSnapshot(usersCollection, snapshot => {
-    users.value = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-  });
-  
+
+  // Execute the query
+  const unsubscribe = onSnapshot(
+    usersQuery,
+    snapshot => {
+      users.value = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    }
+  );
+
   onUnmounted(unsubscribe);
   return users;
 }
@@ -348,15 +354,31 @@ export const useLoadmoduled = () => {
   return modules;
 }
 
-export { projectAuth };
 export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, midTerm, finalTerm, average, grade) => {
   try {
+    // Kiểm tra xem sinh viên đã tồn tại trong hệ thống hay không
+    const studentExist = await isStudentExist(uid);
+
     // Query for documents with the same uid and moduleId
     const querySnapshot = await getDocs(query(collection(db, 'scoreboard'), where('uid', '==', uid), where('moduleId', '==', moduleId)));
 
+    // Fetch the module document based on moduleId
+    const moduleDoc = await getDoc(doc(db, 'modules', moduleId));
+    if (!studentExist) {
+      throw new Error('Sinh viên không tồn tại trong hệ thống');
+    }
     // If there are any documents with the same uid and moduleId, throw an error
     if (!querySnapshot.empty) {
       throw new Error('ĐIỂM CỦA SINH VIÊN NÀY ĐÃ ĐƯỢC NHẬP');
+    }
+
+    // If module document exists, retrieve credit
+    let credit = 0; // Default value for credit
+    if (moduleDoc.exists()) {
+      const moduleData = moduleDoc.data();
+      credit = moduleData.credit; // Retrieve credit from the module document
+    } else {
+      throw new Error('Module with ID ' + moduleId + ' not found.');
     }
 
     // If no existing document, create a new one
@@ -370,7 +392,8 @@ export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, m
       midTerm: midTerm,
       finalTerm: finalTerm,
       average: average,
-      grade: grade
+      grade: grade,
+      credit: credit // Assign the retrieved credit to the new document
     });
 
     // Return uid instead of docRef.id
@@ -381,6 +404,16 @@ export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, m
   }
 };
 
+
+const isStudentExist = async (uid) => {
+  try {
+    const studentSnapshot = await getDocs(query(collection(db, 'users'), where('uid', '==', uid)));
+    return !studentSnapshot.empty; // Trả về true nếu sinh viên tồn tại, ngược lại trả về false
+  } catch (error) {
+    console.error('Error checking student existence:', error);
+    throw error;
+  }
+};
 
 // Function to get scoreboard data by uid
 export const fetchAverageByUid = async (uid) => {

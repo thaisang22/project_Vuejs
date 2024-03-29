@@ -101,20 +101,24 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <a class="dropdown-item" href="/sinhvien/thongtin">Thông tin sinh viên</a>
+                                            <router-link to="/sinhvien/thongtin" class="dropdown-item">Thông tin sinh viên</router-link>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/sinhvien/diem">Xem điểm</a>
+                                            <router-link to="/sinhvien/diem" class="dropdown-item">Xem điểm</router-link>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/sinhvien/dangkyhocphan">Đăng ký học phần</a>
+                                            <router-link to="/sinhvien/dangkyhocphan" class="dropdown-item">Đăng ký học phần</router-link>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/sinhvien/hocphandadangky">Học phần đã đăng ký</a>
+                                            <router-link to="/sinhvien/hocphandadangky" class="dropdown-item">Học phần đã đăng ký</router-link>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#" @click="handleLogout">Đăng xuất</a>
+                                        <li v-if="!isAuthenticated">
+                                            <router-link to="/login">Đăng nhập</router-link>
                                         </li>
+                                        <li v-if="isAuthenticated">
+                                            <a  href="/" @click="handleLogout">Đăng xuất</a>
+                                        </li>
+                                        
                                     </ul>
                                 </li>
                                 <li id="menu-item-23"
@@ -152,28 +156,34 @@
 </template>
 
 <script>
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
-import { getAuth, signOut } from 'firebase/auth';
+import { useStore } from 'vuex';
+import { ref } from 'vue'; // Import ref for reactive variable
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 export default {
-    name:'HeaderComponents',
+  name: 'HeaderComponents',
   setup() {
     const store = useStore();
-    const router = useRouter();
+    const isAuthenticated = ref(false); // Use ref to create reactive variable
 
+    // Lấy đối tượng auth
+    const auth = getAuth();
+
+    // Kiểm tra trạng thái đăng nhập khi component được tạo
+    onAuthStateChanged(auth, (user) => {
+      isAuthenticated.value = !!user; // Update isAuthenticated variable
+    });
+
+    // Xử lý đăng xuất
     const handleLogout = async () => {
-      const auth = getAuth();
-      await signOut(auth); 
-      await store.dispatch('logOut'); 
-      router.push('/');
+      await signOut(auth); // Đăng xuất khỏi Firebase Auth
+      await store.dispatch('logOut'); // Xóa trạng thái đăng nhập từ Vuex
     }
 
-    return { handleLogout };
+    return { isAuthenticated, handleLogout };
   }
 };
 </script>
-
 <style scoped>
 .header,
 .header-wrapper {

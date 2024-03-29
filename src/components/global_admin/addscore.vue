@@ -8,9 +8,9 @@
 
       <!-- Main content -->
       <section class="content">
-        <button class="w-25" @click="exportToExcel('scoreboard', 'scoreboard')">
-                Export to Excel
-            </button>
+        <button class="w-25 btn btn-success mb-3" @click="exportToExcel('scoreboard', 'scoreboard')" >
+            Export to Excel
+        </button>
         <div class="container-fluid">
           <div class="row">
             <div class="col-3">

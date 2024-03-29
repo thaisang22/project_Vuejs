@@ -20,9 +20,12 @@
             </div>
           </div><!-- /.container-fluid -->
         </section>
-        <button @click="exportToExcel('Users', 'Users')">
-                Export to Excel
-            </button>
+        <button
+            @click="exportToExcel('Users', 'Users')"
+            class="btn btn-success  mb-3"
+          >
+            Export to Excel
+          </button>
 
         <!-- Main content -->
         <section class="content">
@@ -94,7 +97,7 @@ import {utils, writeFile } from '/HK5/ungdungweb/VUEJS/project_Vuejs/node_module
 export default {
   name: "Listuser_admin",
   setup() {
-    const users = useLoadUsers();
+    const users =  useLoadUsers ();
 
     function exportToExcel(fileName, sheetName) {
   if (users.length === 0) {
@@ -118,7 +121,7 @@ export default {
 
   // Extract selected columns based on the mapping
   const selectedData = users.value.map(user => {
-    const selectedUser = {};
+    const selectedUser = {};  
     Object.keys(columnMapping).forEach(key => {
       selectedUser[columnMapping[key]] = user[key];
     });
