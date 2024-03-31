@@ -6,13 +6,7 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const  Config = {
-  apiKey: "AIzaSyBmKwt4y-GHcFfUgXuuXV11sVAyGxcGoWc",
-  authDomain: "vuejs-test-7057e.firebaseapp.com",
-  projectId: "vuejs-test-7057e",
-  storageBucket: "vuejs-test-7057e.appspot.com",
-  messagingSenderId: "493145973941",
-  appId: "1:493145973941:web:c606d2b6f6802d2d3a0afc",
-  measurementId: "G-26RNB7FQCN"
+  
 };
 
 
