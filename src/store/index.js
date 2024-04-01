@@ -58,11 +58,11 @@ export default createStore({
           displayName: name,
           role:0
         });
-
+        this.$router.push('/admin/listuser')
         // Update Vuex state with the registered user
         context.commit("SET_USER", response.user);
       } catch (error) {
-        console.error("Email đã tồn tại", error.message);
+        alert("Email đã tồn tại", error.message);
         throw new Error("");
       }
     },
