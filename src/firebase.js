@@ -386,11 +386,11 @@ export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, m
 
     // Query for documents with the same uid and moduleId
     const querySnapshot = await getDocs(query(collection(db, 'scoreboard'), where('uid', '==', uid), where('moduleId', '==', moduleId)));
-
+const erromessage = "Mã sinh viên không tồn tại";
     // Fetch the module document based on moduleId
     const moduleDoc = await getDoc(doc(db, 'modules', moduleId));
     if (!studentExist) {
-      throw new Error('Sinh viên không tồn tại trong hệ thống');
+      alert('Error adding document: ' + erromessage);
     }
     // If there are any documents with the same uid and moduleId, throw an error
     if (!querySnapshot.empty) {
@@ -426,6 +426,32 @@ export const addScore = async (uid, code_user, moduleId, moduleName, tx1, tx2, m
   } catch (error) {
     alert('Error adding document: ' + error.message);
     throw error;
+  }
+};
+
+export const getScore = async (scoreboardId) => {
+  try {
+      const docSnapshot = await getDoc(doc(db, 'scoreboard', scoreboardId));
+      if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          return data;
+      } else {
+          console.error('No score found for scoreboard ID:', scoreboardId);
+          return null;
+      }
+  } catch (error) {
+      console.error('Error getting score:', error);
+      throw error;
+  }
+};
+
+export const updateScore = async (scoreboardId, score) => { 
+  try {
+      const docRef = doc(db, 'scoreboard', scoreboardId);
+      await updateDoc(docRef, score);
+  } catch (error) {
+      console.error('Error updating score:', error);
+      throw error;
   }
 };
 

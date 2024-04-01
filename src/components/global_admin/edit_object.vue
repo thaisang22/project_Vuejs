@@ -122,7 +122,7 @@
     setup() {
       const router = useRouter();
       const route = useRoute();
-      const userId = route.params.id;
+      const id = route.params.id;
       const form = reactive({
         name: '',
         credit: '',
@@ -133,7 +133,7 @@
       });
   
       onMounted(async () => {
-        const user = await getModule(userId);
+        const user = await getModule(id);
         form.name = user.name;
         form.credit = user.credit;
         form.className = user.className;
@@ -143,7 +143,7 @@
       });
   
       const update = async () => {
-        await updateModule(userId, form);
+        await updateModule(id, form);
         router.push('/admin/addobject');
       };
   

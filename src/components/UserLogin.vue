@@ -83,13 +83,18 @@ export default {
     const Login = async () => {
       try {
         const checkUserRole =  searchUserByEmailAndRole(email.value);
-        if (checkUserRole) { await store.dispatch('logIn', {
-          email: email.value,
-          password: password.value
-        })
-        router.push('/sinhvien/thongtin')
-      }}
-   
+        if (!email.value || !password.value) {
+          error.value = "Vui lòng điền đầy đủ thông tin."
+          return;
+        }
+        if (checkUserRole) { 
+          await store.dispatch('logIn', {
+            email: email.value,
+            password: password.value
+          })
+          router.push('/sinhvien/thongtin')
+        }
+      }
       catch (err) {
         error.value = err.message
       }

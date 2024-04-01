@@ -18,7 +18,7 @@
   <script>
   import { firebaseApp } from '@/firebase';
   import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
-  import { useRouter } from 'vue-router'
+
   export default {
     name: 'ResetPasswordComponent',
     data() {
@@ -30,12 +30,12 @@
     },
     methods: {
       resetPassword() {
-        const router = useRouter();
+      
         const auth = getAuth(firebaseApp);
         sendPasswordResetEmail(auth, this.email)
           .then(() => {
             this.successMessage = 'Gửi thành công vui lòng kiểm tra lại email!';
-            router.push('/login');
+  
             this.errorMessage = '';
           })
           .catch(error => {

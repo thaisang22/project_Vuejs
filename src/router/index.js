@@ -23,6 +23,7 @@ import AddNotificate_User from '@/components/global_admin/addnotificate_user.vue
 import List_accouts from '@/components/global_admin/list_accouts.vue'
 import Edit_Module from '@/components/global_admin/edit_object.vue'
 import Login_admin from '@/components/global_admin/login_admin.vue'
+import EditScore from '@/components/global_admin/edit_score.vue'
 // ----------------------------------------------------------------
 // khác
 import NotFound from '@/components/NotFound.vue'
@@ -130,6 +131,7 @@ const routes = [
       { path: "/admin/addobject", name: 'AddObject', component: AddObject },// add học phần
       { path: "/admin/addnotificate", name: 'AddNotificate', component: AddNotificate },// add thông báo
       { path: "/admin/addnotificate_user", name: 'AddNotificate_User', component: AddNotificate_User },// add thông báo user
+      { path: "/admin/edit_score/:id", name: 'EditScore', component: EditScore },// edit diem
     ],
     beforeEnter: requireAuthAdmin
   },

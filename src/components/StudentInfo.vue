@@ -7,7 +7,7 @@
           <div class="student-info" v-if="user">
             <div class="d-flex">
               <div class="label">Mã sinh viên:</div>
-              <div class="value">{{ user.codeuser }}</div>
+              <div class="value">99{{ user.codeuser }}</div>
             </div>
             <div class="d-flex">
               <div class="label">Họ tên:</div>

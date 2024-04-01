@@ -88,17 +88,17 @@
   <td>{{ score.average }}</td>
   <td>{{ score.grade }}</td>
   <td>
-    <router-link :to="`/admin/edit/${score.uid}`">
+    <router-link :to="`/admin/edit_score/${score.id}`">
       <button class="btn btn-primary btn-sm me-2">
         Edit
       </button>
     </router-link>
-    <button class="btn btn-primary btn-sm me-2" @click="deleteScore(score.id)">
+    <button class="btn btn-primary btn-sm me-2" @click="confirmDeleteScore(score.id)">
       Delete
     </button>
+    
   </td>
 </tr>
-
                     </tbody>
                   </table>
                 </div>
@@ -155,6 +155,17 @@ export default {
         console.error('Error adding score:', error);
       }
     },
+    async confirmDeleteScore(scoreId) {
+  try {
+    const confirmed = confirm("Are you sure you want to delete this score?");
+    if (confirmed) {
+      await this.deleteScore(scoreId);
+    }
+  } catch (error) {
+    console.error('Error deleting document:', error);
+  }
+},
+
     async getUidFromCodeuser(codeuser) {
       try {
         const querySnapshot = await getDocs(collection(db, 'users'));

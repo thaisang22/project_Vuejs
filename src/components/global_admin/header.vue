@@ -215,8 +215,8 @@
             />
           </div>
           <div class="info">
-            <a href="#" class="d-block">Xin chào,</a>
-            <a class="dropdown-item" href="#" @click="handleLogout"
+            <a href="#" class="d-block">Xin chào,Admin</a>
+            <a class="dropdown-item text-red" href="#" @click="handleLogout"
               >Đăng xuất</a
             >
           </div>
@@ -304,16 +304,6 @@
                   >
                     <i class="fas fa-sms"></i>
                     <p> Tạo Thông báo</p>
-                  </router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link
-                    to="/"
-                    class="nav-link"
-                    :class="{ active: isActive('/') }"
-                  >
-                    <i class="fab fa-rocketchat" style="color: #51291f"></i>
-                    <p> Chat user</p>
                   </router-link>
                 </li>
               </ul>

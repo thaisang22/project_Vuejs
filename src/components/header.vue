@@ -91,9 +91,13 @@
                                     </ul>
                                 </li>
                                 <li id="menu-item-25"
-                                    class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-25"><a
-                                        href="https://mauweb.monamedia.net/blueuni/category/tin-tuc/"
-                                        class="nav-top-link">Tin tức</a></li>
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-25">
+                                 
+                                    <router-link to="/sinhvien/thongbao">   <a
+                                        
+                                        class="nav-top-link">Thông báo chung
+                                    </a></router-link>
+                                </li>
                                         <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,6 +107,7 @@
                                         <li>
                                             <router-link to="/sinhvien/thongtin" class="dropdown-item">Thông tin sinh viên</router-link>
                                         </li>
+
                                         <li>
                                             <router-link to="/sinhvien/diem" class="dropdown-item">Xem điểm</router-link>
                                         </li>
@@ -113,10 +118,10 @@
                                             <router-link to="/sinhvien/hocphandadangky" class="dropdown-item">Học phần đã đăng ký</router-link>
                                         </li>
                                         <li v-if="!isAuthenticated">
-                                            <router-link to="/login">Đăng nhập</router-link>
+                                            <router-link to="/login" class="dropdown-item">Đăng nhập</router-link>
                                         </li>
                                         <li v-if="isAuthenticated">
-                                            <a  href="/" @click="handleLogout">Đăng xuất</a>
+                                            <a class="dropdown-item" href="/" @click="handleLogout">Đăng xuất</a>
                                         </li>
                                         
                                     </ul>
@@ -126,6 +131,7 @@
                                         href="https://mauweb.monamedia.net/blueuni/lien-he/" class="nav-top-link">Liên
                                         hệ</a></li>
                                         <li class="nav-item dropdown">
+                                        
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="icon-angle-down"></i>
@@ -165,6 +171,7 @@ export default {
   setup() {
     const store = useStore();
     const isAuthenticated = ref(false); // Use ref to create reactive variable
+    
 
     // Lấy đối tượng auth
     const auth = getAuth();
