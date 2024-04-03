@@ -88,19 +88,16 @@ const routes = [
     ],
     beforeEnter: requireAuth,
   },
-
   {
     path: '/login',
     name: 'Login',
     component: LoginUser, // Sử dụng IndexView
   },
-  
   {
     path: '/',
     name: 'index',
     component: index, // Sử dụng IndexView
   },
-
   // ---------------------------------------------------------------------------------------------------------
   // notfound page 404
   {

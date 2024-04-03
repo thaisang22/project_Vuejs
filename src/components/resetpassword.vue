@@ -16,37 +16,48 @@
   </template>
   
   <script>
-  import { firebaseApp } from '@/firebase';
-  import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
-  import { useRouter } from 'vue-router'
-  export default {
-    name: 'ResetPasswordComponent',
-    data() {
-      return {
-        email: '',
-        errorMessage: '',
-        successMessage: ''
-      };
-    },
-    methods: {
-      resetPassword() {
-        const router = useRouter();
-        const auth = getAuth(firebaseApp);
-        sendPasswordResetEmail(auth, this.email)
-          .then(() => {
-            this.successMessage = 'Gửi thành công vui lòng kiểm tra lại email!';
+import { ref } from 'vue';
+import { firebaseApp } from '@/firebase';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { useRouter } from 'vue-router';
+
+export default {
+  name: 'ResetPasswordComponent',
+  setup() {
+    const router = useRouter();
+    const email = ref('');
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
+    const resetPassword = () => {
+      const auth = getAuth(firebaseApp);
+      sendPasswordResetEmail(auth, email.value)
+        .then(() => {
+          successMessage.value = 'Gửi thành công vui lòng kiểm tra lại email!';
+          errorMessage.value = '';
+          // Chờ 3 giây trước khi chuyển về trang đăng nhập
+          setTimeout(() => {
             router.push('/login');
-            this.errorMessage = '';
-          })
-          .catch(error => {
-            this.errorMessage = error.message;
-            this.successMessage = '';
-          });
-      }
+          }, 3000);
+        })
+        .catch(error => {
+          errorMessage.value = error.message;
+          successMessage.value = '';
+        });
     }
-  };
-  </script>
+
+    return {
+      resetPassword,
+      email,
+      errorMessage,
+      successMessage
+    };
+  }
+};
+</script>
+
   
+
   <style scoped>
   .reset-password-container {
     max-width: 400px;

@@ -118,6 +118,7 @@ export const useLoadUsers = () => {
 export const getUserDataById = async (userId) => {
   
   try {
+    // selcet from colltion users by id docment
     const userDocRef = doc(usersCollection, userId);
     const userDocSnapshot = await getDoc(userDocRef); 
     if (userDocSnapshot.exists()) {

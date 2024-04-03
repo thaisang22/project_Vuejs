@@ -62,8 +62,7 @@ export default createStore({
         // Update Vuex state with the registered user
         context.commit("SET_USER", response.user);
       } catch (error) {
-        console.error("Email đã tồn tại", error.message);
-        throw new Error("");
+        alert("Email đã tồn tại!!!")
       }
     },
 

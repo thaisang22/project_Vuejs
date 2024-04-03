@@ -107,7 +107,7 @@
 </template>
 <script>
 import { useLoadUsers } from "@/firebase";
-import { utils, writeFile } from "xlsx";
+import { utils, writeFile } from '/HK5/ungdungweb/VUEJS/project_Vuejs/node_modules/xlsx';
 // import utils từ thư viện XLSX
 
 export default {
@@ -161,11 +161,6 @@ export default {
   },
 };
 </script>
-
-
-
-
-
 
 <style lang="scss" scoped>
 </style>

@@ -91,10 +91,11 @@
                                     </ul>
                                 </li>
                                 <li id="menu-item-25"
-                                    class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-25"><a
+                                    class="menu-item menu-item-type-taxonomy menu-item-object-category  menu-item-25">
+                                    <a
                                         href="https://mauweb.monamedia.net/blueuni/category/tin-tuc/"
-                                        class="nav-top-link">Tin tức</a></li>
-                                        <li class="nav-item dropdown">
+                                        class="nav-top-link">Thông báo chung</a></li>
+                                <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         Sinh Viên <i class="icon-angle-down"></i>
@@ -113,10 +114,10 @@
                                             <router-link to="/sinhvien/hocphandadangky" class="dropdown-item">Học phần đã đăng ký</router-link>
                                         </li>
                                         <li v-if="!isAuthenticated">
-                                            <router-link to="/login">Đăng nhập</router-link>
+                                            <router-link to="/login"  class="dropdown-item">Đăng nhập</router-link>
                                         </li>
                                         <li v-if="isAuthenticated">
-                                            <a  href="/" @click="handleLogout">Đăng xuất</a>
+                                            <a  class="dropdown-item" hef="/" @click="handleLogout">Đăng xuất</a>
                                         </li>
                                         
                                     </ul>

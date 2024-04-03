@@ -4,7 +4,6 @@
     <section class="content-header">
       <!-- Your content header code -->
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">

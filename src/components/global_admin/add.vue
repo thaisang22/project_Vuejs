@@ -69,7 +69,6 @@
                     minlength="8"
                   />
                 </div>
-
                 <button type="submit" class="btn btn-success mt-3">
                   Create User
                 </button>
@@ -88,7 +87,7 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-
+import { useRouter } from 'vue-router'
 
 export default {
   name:"RegisterUserComponent",
@@ -100,7 +99,7 @@ export default {
     const successMessage = ref(null) // New ref for success message
 
     const store = useStore()
-
+    const router = useRouter();
     const Register = async () => {
       try {
         await store.dispatch('register', {
@@ -108,12 +107,12 @@ export default {
           password: password.value,
           name: name.value
         })
-
         // Set success message and clear form fields
         successMessage.value = 'Registration successful!'
         name.value = ''
         email.value = ''
         password.value = ''
+        router.push('/admin/listuser')
       } catch (err) {
         error.value = err.message
       }
